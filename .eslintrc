@@ -1,0 +1,37 @@
+{
+	"parserOptions": {
+		"parser": "babel-eslint",
+		"ecmaVersion": 2018,
+		"sourceType": "module",
+		"ecmaFeatures": {
+			"jsx": true
+		}
+	},
+	"rules": {
+		"semi": "error",
+		"prettier/prettier": [
+			"error",
+			{
+				"endOfLine": "auto"
+			}
+		],
+		"no-restricted-syntax": [
+			"error",
+			{
+				"selector": "ExportDefaultDeclaration",
+				"message": "Restricted default export, prefer named exports!"
+			}
+		],
+		"no-console": [
+			"error",
+			{
+				"allow": ["warn", "error"]
+			}
+		]
+	},
+	"extends": [
+		"plugin:@typescript-eslint/recommended",
+		"prettier/@typescript-eslint",
+		"plugin:prettier/recommended"
+	]
+}
