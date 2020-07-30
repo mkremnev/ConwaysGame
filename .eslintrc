@@ -7,6 +7,11 @@
 			"jsx": true
 		}
 	},
+	"settings": {
+		"react": {
+			"version": "detect"
+		}
+	},
 	"rules": {
 		"semi": "error",
 		"@typescript-eslint/no-non-null-assertion": "off",
@@ -23,6 +28,8 @@
 				"message": "Restricted default export, prefer named exports!"
 			}
 		],
+		"@typescript-eslint/explicit-function-return-type": 0,
+		"react/prop-types": 0,
 		"no-console": [
 			"error",
 			{
@@ -33,6 +40,15 @@
 	"extends": [
 		"plugin:@typescript-eslint/recommended",
 		"prettier/@typescript-eslint",
-		"plugin:prettier/recommended"
+		"plugin:prettier/recommended",
+		"plugin:react/recommended"
+	],
+	"overrides": [
+		{
+			"files": ["webpack.config.js"],
+			"rules": {
+				"@typescript-eslint/no-var-requires": ["off"]
+			}
+		}
 	]
 }
