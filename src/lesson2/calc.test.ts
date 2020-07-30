@@ -1,11 +1,11 @@
 import { calc } from './calc';
 
-describe('Positve test case', () => {
-	it('Extentions 2 + 2 + 2 = 6', () => {
-		expect(calc('2 + 2 + 2')).toBe(6);
-	});
-
-	it('Extentions 2** + 2 + 2 = 8', () => {
-		expect(calc('2** + 2 + 2')).toBe(8);
-	});
+test.each`
+	input            | expected
+	${'2 + 2 + 2'}   | ${6}
+	${'2** + 2 + 2'} | ${8}
+	${'4! + 2 + 2'}  | ${28}
+	${'4^2 + 2 + 2'} | ${20}
+`('receive $expected submit functions calc($input)', ({ input, expected }) => {
+	expect(calc(input)).toEqual(expected);
 });

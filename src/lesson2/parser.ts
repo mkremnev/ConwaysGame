@@ -1,10 +1,25 @@
-export const parser = (extention: string): (string | number)[] => {
+import { parserType, isNumeric } from './common';
+export const parser = (extention: string): parserType => {
 	const parserExtention = extention.split(' ');
 
-	return parserExtention.reduce<(number | string)[]>((arr, item, key) => {
-		if (item.match(/\d*\*\*$/)) {
-			arr.push(Number(item.replace(/\*\*/, '')));
-			arr.push(String(item.replace(/\d*/, '')));
+	return parserExtention.reduce<parserType>((arr, item) => {
+		if (
+			item.match(/((\d+)(\*\*))?((\d+)(\!))?((\d+)(\^)(\d*))?$/)![0]
+				.length > 1
+		) {
+			item.match(/((\d+)(\*\*))?((\d+)(\!))?((\d+)(\^)(\d+))?$/)!
+				.filter((value) => {
+					return (
+						value != undefined &&
+						!value.match(/\d+(\!|\^|\*\*)(\d*)?$/)
+					);
+				})
+				.forEach((value) => {
+					const typeValue = isNumeric(value)
+						? Number(value)
+						: String(value);
+					arr.push(typeValue);
+				});
 		} else if (item.match(/^-{0,1}\d+$/)) {
 			arr.push(Number(item));
 		} else if (

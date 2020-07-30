@@ -1,37 +1,27 @@
 import { parser } from './parser';
 
-describe('Parser correct cases', () => {
-	it('2 + 2', () => {
-		expect(parser('2 + 2')).toEqual([2, '+', 2]);
-	});
+test.each`
+	input             | expected
+	${'1 + + 33 - 2'} | ${'Unexpected string'}
+	${'1 ! 33 - 2'}   | ${'Unexpected string'}
+`(
+	'receive $expected after parsing the string $input',
+	({ input, expected }) => {
+		expect(() => parser(input)).toThrow(TypeError(expected));
+	},
+);
 
-	it('2 + 2 + 5 + 7', () => {
-		expect(parser('2 + 2 + 5 + 7')).toEqual([2, '+', 2, '+', 5, '+', 7]);
-	});
-
-	it('11 + 3 * 22', () => {
-		expect(parser('11 + 3 * 22')).toEqual([11, '+', 3, '*', 22]);
-	});
-
-	it('11** + 3 * 22', () => {
-		expect(parser('11** + 3 * 22')).toEqual([11, '**', '+', 3, '*', 22]);
-	});
-
-	it('2** + 2 + 2', () => {
-		expect(parser('2** + 2 + 2')).toEqual([2, '**', '+', 2, '+', 2]);
-	});
-});
-
-describe('Parser invalid cases', () => {
-	it('1 + + 33 - 2', () => {
-		expect(() => parser('1 + + 33 - 2')).toThrow(
-			TypeError('Unexpected string'),
-		);
-	});
-
-	it('1 ! 33 - 2', () => {
-		expect(() => parser('1 ! 33 - 2')).toThrow(
-			TypeError('Unexpected string'),
-		);
-	});
-});
+test.each`
+	input                 | expected
+	${'2 + 2'}            | ${[2, '+', 2]}
+	${'2 + 2 + 5 + 7'}    | ${[2, '+', 2, '+', 5, '+', 7]}
+	${'11 + 3 * 22'}      | ${[11, '+', 3, '*', 22]}
+	${'11** + 3 * 22'}    | ${[11, '**', '+', 3, '*', 22]}
+	${'2** + 2 + 2'}      | ${[2, '**', '+', 2, '+', 2]}
+	${'2** + 2 + 2 + 2!'} | ${[2, '**', '+', 2, '+', 2, '+', 2, '!']}
+`(
+	'receive $expected after parsing the string $input',
+	({ input, expected }) => {
+		expect(parser(input)).toEqual(expected);
+	},
+);

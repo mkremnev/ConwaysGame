@@ -1,15 +1,35 @@
 import { degreeСalc, firstPrioritiesCalc, secondPrioritiesCalc } from './logic';
 
-describe('Positive test case', () => {
-	it('degree 11** + 3', () => {
-		expect(degreeСalc([11, '**', '+', 3])).toEqual([121, '+', 3]);
-	});
+test.each`
+	input                 | expected
+	${[11, '**', '+', 3]} | ${[121, '+', 3]}
+	${[4, '!', '+', 3]}   | ${[24, '+', 3]}
+`(
+	'receive $expected submit functions degreeСalc($input)',
+	({ input, expected }) => {
+		expect(degreeСalc(input)).toEqual(expected);
+	},
+);
 
-	it('firstPrioritiesCalc 4 * 5 + 6', () => {
-		expect(firstPrioritiesCalc([4, '*', 5, '+', 6])).toEqual([20, '+', 6]);
-	});
+test.each`
+	input                  | expected
+	${[4, '^', 2, '+', 6]} | ${[16, '+', 6]}
+	${[4, '*', 5, '+', 6]} | ${[20, '+', 6]}
+`(
+	'receive $expected submit functions firstPrioritiesCalc($input)',
+	({ input, expected }) => {
+		expect(firstPrioritiesCalc(input)).toEqual(expected);
+	},
+);
 
-	it('secondPrioritiesCalc 4 + 5 + 6', () => {
-		expect(secondPrioritiesCalc([4, '+', 5, '+', 6])).toEqual(15);
-	});
-});
+test.each`
+	input                   | expected
+	${[4, '+', 5, '+', 6]}  | ${15}
+	${[9, '+', 1, '+', 10]} | ${20}
+	${[9, '+', 1, '-', 5]}  | ${5}
+`(
+	'receive $expected submit functions secondPrioritiesCalc($input)',
+	({ input, expected }) => {
+		expect(secondPrioritiesCalc(input)).toBe(expected);
+	},
+);
