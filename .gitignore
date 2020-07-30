@@ -105,3 +105,6 @@ dist
 .vscode
 package-lock.json
 tmp
+dist
+.storybook
+storybook-static
