@@ -11,7 +11,3 @@ const Cell: FC<CellProps> = ({ filled, x, y }) => {
 };
 
 export default Cell;
-
-export function getCell(props: CellProps) {
-	return <Cell {...props} />;
-}

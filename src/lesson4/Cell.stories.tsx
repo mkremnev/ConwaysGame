@@ -9,9 +9,9 @@ export default {
 };
 
 export const nonFilled = () => [
-	<Cell x={number('x', 1)} y={number('y', 23)} key="nonFilled" />,
+	<Cell x={number('x', 1)} y={number('y', 23)} />,
 ];
 
 export const Filled = () => [
-	<Cell filled={true} x={number('x', 1)} y={number('y', 23)} key="Filled" />,
+	<Cell filled={true} x={number('x', 1)} y={number('y', 23)} />,
 ];

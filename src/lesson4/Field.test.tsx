@@ -1,5 +1,6 @@
+import React from 'react';
 import { mount } from 'enzyme';
-import { getField } from './Field';
+import Field from './Field';
 
 test.each`
 	inputfilled | expected_br | expected_div | expected_cell_empty | expected_cell_filled
@@ -16,7 +17,7 @@ test.each`
 		expected_cell_empty,
 		expected_cell_filled,
 	}) => {
-		const field = mount(getField({ field: inputfilled }));
+		const field = mount(<Field field={inputfilled} />);
 		expect(field.find('p').length).toBe(expected_br);
 		expect(field.find('.cell').length).toBe(expected_div);
 		expect(field.find('.cell-empty').length).toBe(expected_cell_empty);

@@ -15,7 +15,3 @@ const Field: FC<FieldProps> = ({ field }) => (
 );
 
 export default Field;
-
-export function getField(props: FieldProps) {
-	return <Field {...props} />;
-}
