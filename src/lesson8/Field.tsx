@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import Cell from './Cell';
+import { Cell } from './Cell';
 import './Field.css';
 import type { FieldProps } from './Interfaces';
 
@@ -14,4 +14,4 @@ const Field: FC<FieldProps> = ({ field }) => (
 	</div>
 );
 
-export default Field;
+export { Field };

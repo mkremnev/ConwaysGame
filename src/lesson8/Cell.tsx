@@ -10,4 +10,4 @@ const Cell: FC<CellProps> = ({ filled, x, y }) => {
 	return <div className="cell cell-empty"></div>;
 };
 
-export default Cell;
+export { Cell };

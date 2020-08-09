@@ -1,17 +1,22 @@
 import React from 'react';
-import Cell from './Cell';
-import { action } from '@storybook/addon-actions';
-import { withKnobs, text, number } from '@storybook/addon-knobs';
+import { Cell } from './Cell';
+import { withKnobs, number } from '@storybook/addon-knobs';
 
+// eslint-disable-next-line no-restricted-syntax
 export default {
 	title: 'Lesson 4 / Cell',
 	decorators: [withKnobs],
 };
 
 export const nonFilled = () => [
-	<Cell x={number('x', 1)} y={number('y', 23)} />,
+	<Cell x={number('x', 1)} y={number('y', 23)} key={'stories'} />,
 ];
 
 export const Filled = () => [
-	<Cell filled={true} x={number('x', 1)} y={number('y', 23)} />,
+	<Cell
+		filled={true}
+		x={number('x', 1)}
+		y={number('y', 23)}
+		key={'stories'}
+	/>,
 ];

@@ -1,13 +1,14 @@
 import React from 'react';
-import { withKnobs, number, array } from '@storybook/addon-knobs';
-import Field from './Field';
-import GameOfLifeProto from './GameOfLifeProto';
+import { withKnobs, number } from '@storybook/addon-knobs';
+import { Field } from './Field';
+import { GameOfLifeProto } from './GameOfLifeProto';
+
+// eslint-disable-next-line no-restricted-syntax
 export default {
 	title: 'Lesson 4 / GameOfLifeProto',
 	decorators: [withKnobs],
 };
 
-const players = ['x', 'y'];
 export const GameOfLifePrototip = () => (
 	<GameOfLifeProto
 		columns={number('columns', 20)}

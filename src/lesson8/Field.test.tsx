@@ -1,9 +1,9 @@
 import React from 'react';
 import { mount } from 'enzyme';
-import Field from './Field';
+import { Field } from './Field';
 
 test.each`
-	inputfilled | expected_br | expected_div | expected_cell_empty | expected_cell_filled
+	inputFilled | expectedBr | expectedDiv | expectedCellEmpty | expectedCellFilled
 	${[
 	[true, false, true, true, false, true, true, true, false, true],
 	[true, true, true, true, false, false, false, true, false, true],
@@ -11,16 +11,16 @@ test.each`
 `(
 	'testing rendering field',
 	({
-		inputfilled,
-		expected_br,
-		expected_div,
-		expected_cell_empty,
-		expected_cell_filled,
+		inputFilled,
+		expectedBr,
+		expectedDiv,
+		expectedCellEmpty,
+		expectedCellFilled,
 	}) => {
-		const field = mount(<Field field={inputfilled} />);
-		expect(field.find('p').length).toBe(expected_br);
-		expect(field.find('.cell').length).toBe(expected_div);
-		expect(field.find('.cell-empty').length).toBe(expected_cell_empty);
-		expect(field.find('.cell-filled').length).toBe(expected_cell_filled);
+		const field = mount(<Field field={inputFilled} />);
+		expect(field.find('p').length).toBe(expectedBr);
+		expect(field.find('.cell').length).toBe(expectedDiv);
+		expect(field.find('.cell-empty').length).toBe(expectedCellEmpty);
+		expect(field.find('.cell-filled').length).toBe(expectedCellFilled);
 	},
 );

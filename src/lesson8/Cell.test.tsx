@@ -1,6 +1,6 @@
 import React from 'react';
-import { mount, shallow } from 'enzyme';
-import Cell from './Cell';
+import { mount } from 'enzyme';
+import { Cell } from './Cell';
 
 test.each`
 	inputfilled | expected

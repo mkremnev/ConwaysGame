@@ -44,7 +44,7 @@ class GameOfLifeProto extends React.Component<FieldPropsInterface, FieldState> {
 	}
 
 	public onClick() {
-		this.setState((state) => {
+		this.setState(() => {
 			const cloneFieldState = cellGridFillRandom(
 				this.props.rows,
 				this.props.columns,
@@ -72,4 +72,4 @@ class GameOfLifeProto extends React.Component<FieldPropsInterface, FieldState> {
 	}
 }
 
-export default GameOfLifeProto;
+export { GameOfLifeProto };
