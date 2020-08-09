@@ -3,7 +3,6 @@ import './GameOfLifeProto.css';
 
 type FieldPropsComponent = React.FC<{
 	field: boolean[][];
-	onClick: () => void;
 }>;
 
 interface FieldPropsInterface {
@@ -40,11 +39,10 @@ class GameOfLifeProto extends React.Component<FieldPropsInterface, FieldState> {
 		this.state = {
 			fieldState: cellGridFillRandom(this.props.rows, this.props.columns),
 		};
-		this.onClick = this.onClick.bind(this);
 	}
 
 	public onClick() {
-		this.setState((state) => {
+		this.setState(() => {
 			const cloneFieldState = cellGridFillRandom(
 				this.props.rows,
 				this.props.columns,
@@ -60,10 +58,7 @@ class GameOfLifeProto extends React.Component<FieldPropsInterface, FieldState> {
 		const FieldComponent = this.fieldComponent;
 		return (
 			<>
-				<FieldComponent
-					field={this.state.fieldState}
-					onClick={this.onClick}
-				/>
+				<FieldComponent field={this.state.fieldState} />
 				<button className="btn" onClick={() => this.onClick()}>
 					{'Обновить'}
 				</button>
@@ -72,4 +67,4 @@ class GameOfLifeProto extends React.Component<FieldPropsInterface, FieldState> {
 	}
 }
 
-export default GameOfLifeProto;
+export { GameOfLifeProto };

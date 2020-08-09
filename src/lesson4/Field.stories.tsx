@@ -1,15 +1,8 @@
 import React from 'react';
-import Field from './Field';
-import { action } from '@storybook/addon-actions';
-import {
-	withKnobs,
-	text,
-	number,
-	object,
-	boolean,
-} from '@storybook/addon-knobs';
-import type { FieldProps } from './Interfaces';
+import { Field } from './Field';
+import { withKnobs, object } from '@storybook/addon-knobs';
 
+// eslint-disable-next-line no-restricted-syntax
 export default {
 	title: 'Lesson 4 / Field',
 	decorators: [withKnobs],
@@ -32,9 +25,9 @@ const cellGridNonFill = () =>
 	);
 
 export const emptyCell = () => [
-	<Field field={object('field', cellGridNonFill())} />,
+	<Field field={object('field', cellGridNonFill())} key="stories" />,
 ];
 
 export const notEmptyCell = () => [
-	<Field field={object('field', cellGridFillRandom())} />,
+	<Field field={object('field', cellGridFillRandom())} key="stories" />,
 ];
