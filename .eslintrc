@@ -22,7 +22,7 @@
 			}
 		],
 		"no-restricted-syntax": [
-			"error",
+			"warn",
 			{
 				"selector": "ExportDefaultDeclaration",
 				"message": "Restricted default export, prefer named exports!"
