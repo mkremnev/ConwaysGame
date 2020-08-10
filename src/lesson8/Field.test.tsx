@@ -2,6 +2,8 @@ import React from 'react';
 import { mount } from 'enzyme';
 import { Field } from './Field';
 
+// TODO дописать тест для клика
+
 test.each`
 	inputFilled | expectedBr | expectedDiv | expectedCellEmpty | expectedCellFilled
 	${[

@@ -1,10 +1,11 @@
 import React from 'react';
 import { Field } from './Field';
+import { action } from '@storybook/addon-actions';
 import { withKnobs, object } from '@storybook/addon-knobs';
 
 // eslint-disable-next-line no-restricted-syntax
 export default {
-	title: 'Lesson 4 / Field',
+	title: 'Lesson 8 / Field',
 	decorators: [withKnobs],
 };
 
@@ -25,9 +26,17 @@ const cellGridNonFill = () =>
 	);
 
 export const emptyCell = () => [
-	<Field field={object('field', cellGridNonFill())} key="stories" />,
+	<Field
+		field={object('field', cellGridNonFill())}
+		key="stories"
+		onClick={action('Clciked Cell')}
+	/>,
 ];
 
 export const notEmptyCell = () => [
-	<Field field={object('field', cellGridFillRandom())} key="stories" />,
+	<Field
+		field={object('field', cellGridFillRandom())}
+		key="stories"
+		onClick={action('Clciked Cell')}
+	/>,
 ];

@@ -5,7 +5,7 @@ import { GameOfLifeProto } from './GameOfLifeProto';
 
 // eslint-disable-next-line no-restricted-syntax
 export default {
-	title: 'Lesson 4 / GameOfLifeProto',
+	title: 'Lesson 8 / GameOfLifeProto',
 	decorators: [withKnobs],
 };
 

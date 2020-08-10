@@ -2,12 +2,22 @@ import React, { FC } from 'react';
 import './Cell.css';
 import type { CellProps } from './Interfaces';
 
-const Cell: FC<CellProps> = ({ filled, x, y }) => {
+export const Cell: FC<CellProps> = ({ filled, x, y, onClick }) => {
 	if (filled) {
-		return <div className="cell cell-filled">{filled}</div>;
+		return (
+			<button
+				className="cell cell-filled"
+				onClick={() => onClick(x || 0, y || 0)}
+			>
+				{filled}
+			</button>
+		);
 	}
 
-	return <div className="cell cell-empty"></div>;
+	return (
+		<button
+			className="cell cell-empty"
+			onClick={() => onClick(x || 0, y || 0)}
+		></button>
+	);
 };
-
-export { Cell };

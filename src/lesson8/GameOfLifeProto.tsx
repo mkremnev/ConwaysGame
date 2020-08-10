@@ -1,20 +1,10 @@
 import React from 'react';
 import './GameOfLifeProto.css';
-
-type FieldPropsComponent = React.FC<{
-	field: boolean[][];
-	onClick: () => void;
-}>;
-
-interface FieldPropsInterface {
-	rows: number;
-	columns: number;
-	fieldComponent: FieldPropsComponent;
-}
-
-interface FieldState {
-	fieldState: boolean[][];
-}
+import {
+	FieldPropsComponent,
+	FieldPropsInterface,
+	FieldState,
+} from './Interfaces';
 
 const cellGridFillRandom = (
 	rows: number,
@@ -31,19 +21,23 @@ const cellGridFillRandom = (
 	return grid;
 };
 
-class GameOfLifeProto extends React.Component<FieldPropsInterface, FieldState> {
+export class GameOfLifeProto extends React.Component<
+	FieldPropsInterface,
+	FieldState
+> {
 	private fieldComponent: FieldPropsComponent;
 
 	constructor(props: FieldPropsInterface) {
 		super(props);
 		this.fieldComponent = props.fieldComponent;
 		this.state = {
-			fieldState: cellGridFillRandom(this.props.rows, this.props.columns),
+			fieldState: [],
 		};
+		this.clear = this.clear.bind(this);
 		this.onClick = this.onClick.bind(this);
 	}
 
-	public onClick() {
+	public clear() {
 		this.setState(() => {
 			const cloneFieldState = cellGridFillRandom(
 				this.props.rows,
@@ -56,6 +50,23 @@ class GameOfLifeProto extends React.Component<FieldPropsInterface, FieldState> {
 		});
 	}
 
+	public onClick(x: number, y: number) {
+		this.setState((state) => {
+			const cloneFieldState = state.fieldState!.map((row) => [...row]);
+			cloneFieldState[x][y] = !cloneFieldState[x][y];
+
+			return {
+				fieldState: cloneFieldState,
+			};
+		});
+	}
+
+	componentDidMount() {
+		this.setState({
+			fieldState: cellGridFillRandom(this.props.rows, this.props.columns),
+		});
+	}
+
 	render() {
 		const FieldComponent = this.fieldComponent;
 		return (
@@ -64,12 +75,10 @@ class GameOfLifeProto extends React.Component<FieldPropsInterface, FieldState> {
 					field={this.state.fieldState}
 					onClick={this.onClick}
 				/>
-				<button className="btn" onClick={() => this.onClick()}>
+				<button className="btn" onClick={() => this.clear()}>
 					{'Обновить'}
 				</button>
 			</>
 		);
 	}
 }
-
-export { GameOfLifeProto };
