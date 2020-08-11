@@ -1,6 +1,6 @@
 import React from 'react';
 import { withKnobs, number } from '@storybook/addon-knobs';
-import { Field } from './Field';
+import { Field } from '../Field/Field';
 import { GameOfLifeProto } from './GameOfLifeProto';
 
 // eslint-disable-next-line no-restricted-syntax

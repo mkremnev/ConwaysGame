@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
-import { Cell } from './Cell';
+import { Cell } from '../Cell/Cell';
 import './Field.css';
-import type { FieldProps } from './Interfaces';
+import type { FieldProps } from '../../types/Field';
 
 export const Field: FC<FieldProps> = ({ field, onClick }) => (
 	<div className="field">

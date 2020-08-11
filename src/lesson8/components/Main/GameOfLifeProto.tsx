@@ -4,9 +4,9 @@ import {
 	FieldPropsComponent,
 	FieldPropsInterface,
 	FieldState,
-} from './Interfaces';
+} from '../../types/GameOfProto';
 
-const cellGridFillRandom = (
+export const cellGridFillRandom = (
 	rows: number,
 	columns: number,
 	cellStatus = () => Math.random() < 0.3,
@@ -37,7 +37,7 @@ export class GameOfLifeProto extends React.Component<
 		this.onClick = this.onClick.bind(this);
 	}
 
-	public clear() {
+	private clear() {
 		this.setState(() => {
 			const cloneFieldState = cellGridFillRandom(
 				this.props.rows,
@@ -50,7 +50,7 @@ export class GameOfLifeProto extends React.Component<
 		});
 	}
 
-	public onClick(x: number, y: number) {
+	private onClick(x: number, y: number) {
 		this.setState((state) => {
 			const cloneFieldState = state.fieldState!.map((row) => [...row]);
 			cloneFieldState[x][y] = !cloneFieldState[x][y];

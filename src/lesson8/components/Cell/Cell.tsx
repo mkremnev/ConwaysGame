@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import './Cell.css';
-import type { CellProps } from './Interfaces';
+import type { CellProps } from '../../types/Cell';
 
 export const Cell: FC<CellProps> = ({ filled, x, y, onClick }) => {
 	if (filled) {

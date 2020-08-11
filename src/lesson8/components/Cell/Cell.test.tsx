@@ -2,6 +2,8 @@ import React from 'react';
 import { mount } from 'enzyme';
 import { Cell } from './Cell';
 
+//TODO дописать onclick
+
 test.each`
 	inputfilled | expected
 	${true}     | ${'<div class="cell cell-filled"></div>'}
