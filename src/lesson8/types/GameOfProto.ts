@@ -6,7 +6,7 @@ export type FieldPropsComponent = React.FC<{
 export interface FieldPropsInterface {
 	rows: number;
 	columns: number;
-	timerID: NodeJS.Timeout;
+	timerID?: NodeJS.Timeout;
 	fieldComponent: FieldPropsComponent;
 }
 

@@ -5,7 +5,7 @@ import { withKnobs, number } from '@storybook/addon-knobs';
 
 // eslint-disable-next-line no-restricted-syntax
 export default {
-	title: 'Lesson 8 / Cell',
+	title: 'Lesson 8 / Board / Cell',
 	decorators: [withKnobs],
 };
 
