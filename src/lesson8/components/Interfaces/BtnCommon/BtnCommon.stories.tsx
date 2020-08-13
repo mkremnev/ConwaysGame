@@ -1,5 +1,5 @@
 import React from 'react';
-import { BtnClearBoard } from './BtnClearBoard';
+import { BtnCommon } from './BtnCommon';
 import { action } from '@storybook/addon-actions';
 import { withKnobs } from '@storybook/addon-knobs';
 
@@ -10,5 +10,9 @@ export default {
 };
 
 export const BtnClearBoardInterfaces = () => [
-	<BtnClearBoard onClick={action('Button clicked')} key="interfaces" />,
+	<BtnCommon
+		text={'Очистить'}
+		onClick={action('Button clicked')}
+		key="interfaces"
+	/>,
 ];

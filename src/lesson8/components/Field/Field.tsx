@@ -6,7 +6,7 @@ import type { FieldProps } from '../../types/Field';
 export const Field: FC<FieldProps> = ({ field, onClick }) => (
 	<div className="field">
 		{field.map((row, y) => [
-			...row.map((filled: boolean, x) => (
+			...row.map((_filled: boolean, x) => (
 				<Cell
 					key={`${x}_${y}`}
 					filled={field[y][x]}

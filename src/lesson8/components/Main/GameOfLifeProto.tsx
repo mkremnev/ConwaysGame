@@ -5,8 +5,7 @@ import {
 	FieldPropsInterface,
 	FieldState,
 } from '../../types/GameOfProto';
-import { BtnClearBoard } from '../Interfaces/BtnClearBoard/BtnClearBoard';
-import { BtnNewBoard } from '../Interfaces/BtnNewBoard/BtnNewBoard';
+import { BtnCommon } from '../Interfaces/BtnCommon/BtnCommon';
 import { BtnRunStopGame } from '../Interfaces/BtnRunStopGame/BtnRunStopGame';
 import { InputSpeed } from '../Interfaces/InputSpeed/InputSpeed';
 
@@ -24,24 +23,19 @@ export class GameOfLifeProto extends React.Component<
 		this.fieldComponent = props.fieldComponent;
 		this.rows = props.rows;
 		this.columns = props.columns;
-		this.timerID = props.timerID;
+		this.timerID = props.timerID as NodeJS.Timeout;
 		this.state = {
 			fieldState: [],
 			isRunningGame: false,
 			speedValue: 500,
 		};
-		this.clearBoard = this.clearBoard.bind(this);
-		this.updateBoard = this.updateBoard.bind(this);
-		this.gameRunStopToggle = this.gameRunStopToggle.bind(this);
-		this.onClick = this.onClick.bind(this);
-		this.speedChange = this.speedChange.bind(this);
 	}
 
-	private cellGridFillRandom(
+	cellGridFillRandom = (
 		rows: number,
 		columns: number,
 		cellStatus = () => Math.random() < 0.3,
-	) {
+	) => {
 		const grid: boolean[][] = [];
 		for (let y = 0; y < rows; y++) {
 			grid[y] = [];
@@ -50,9 +44,9 @@ export class GameOfLifeProto extends React.Component<
 			}
 		}
 		return grid;
-	}
+	};
 
-	private onClick(x: number, y: number) {
+	onClick = (x: number, y: number) => {
 		this.setState((state) => {
 			const cloneFieldState = state.fieldState!.map((row) => [...row]);
 			cloneFieldState[x][y] = !cloneFieldState[x][y];
@@ -61,9 +55,9 @@ export class GameOfLifeProto extends React.Component<
 				fieldState: cloneFieldState,
 			};
 		});
-	}
+	};
 
-	private clearBoard() {
+	clearBoard = () => {
 		this.setState(() => {
 			const cloneFieldState = this.cellGridFillRandom(
 				this.props.rows,
@@ -75,14 +69,14 @@ export class GameOfLifeProto extends React.Component<
 				fieldState: cloneFieldState,
 			};
 		});
-	}
+	};
 
-	private gameOflife() {
+	gameOflife = () => {
 		const nextStep = (prevState: FieldState) => {
 			const prevBoard = prevState.fieldState;
 			const cloneBoard = this.state.fieldState.map((row) => [...row]);
 
-			const amountTrueNeighbors = (x: number, y: number) => {
+			const amountAliveNeighbors = (x: number, y: number) => {
 				const eightNeighbors = [
 					[-1, -1],
 					[-1, 0],
@@ -93,35 +87,40 @@ export class GameOfLifeProto extends React.Component<
 					[1, -1],
 					[0, -1],
 				];
-				return eightNeighbors.reduce((trueNeighbors, neighbor) => {
+
+				return eightNeighbors.reduce((aliveNeighbors, neighbor) => {
 					const xCell = x + neighbor[0];
 					const yCell = y + neighbor[1];
-					const isNeighborOnBoard =
+					const endBoard =
 						xCell >= 0 &&
 						xCell < this.props.rows &&
 						yCell >= 0 &&
 						yCell < this.props.columns;
 					if (
-						trueNeighbors < 4 &&
-						isNeighborOnBoard &&
+						aliveNeighbors < 4 &&
+						endBoard &&
 						prevBoard[xCell][yCell]
 					) {
-						return trueNeighbors + 1;
+						return aliveNeighbors + 1;
 					} else {
-						return trueNeighbors;
+						return aliveNeighbors;
 					}
 				}, 0);
 			};
 
-			for (let r = 0; r < this.props.rows; r++) {
-				for (let c = 0; c < this.props.columns; c++) {
-					const totalTrueNeighbors = amountTrueNeighbors(r, c);
+			for (let rows = 0; rows < this.props.rows; rows++) {
+				for (let columns = 0; columns < this.props.columns; columns++) {
+					const totalAliveNeighbors = amountAliveNeighbors(
+						rows,
+						columns,
+					);
 
-					if (!prevBoard[r][c]) {
-						if (totalTrueNeighbors === 3) cloneBoard[r][c] = true;
+					if (!prevBoard[rows][columns]) {
+						if (totalAliveNeighbors === 3)
+							cloneBoard[rows][columns] = true;
 					} else {
-						if (totalTrueNeighbors < 2 || totalTrueNeighbors > 3)
-							cloneBoard[r][c] = false;
+						if (totalAliveNeighbors < 2 || totalAliveNeighbors > 3)
+							cloneBoard[rows][columns] = false;
 					}
 				}
 			}
@@ -132,9 +131,9 @@ export class GameOfLifeProto extends React.Component<
 		this.setState((prevState) => ({
 			fieldState: nextStep(prevState),
 		}));
-	}
+	};
 
-	private updateBoard() {
+	updateBoard = () => {
 		this.setState(() => {
 			const cloneFieldState = this.cellGridFillRandom(
 				this.props.rows,
@@ -145,18 +144,18 @@ export class GameOfLifeProto extends React.Component<
 				fieldState: cloneFieldState,
 			};
 		});
-	}
+	};
 
-	private setNewBoard() {
+	setNewBoard = () => {
 		this.setState({
 			fieldState: this.cellGridFillRandom(
 				this.props.rows,
 				this.props.columns,
 			),
 		});
-	}
+	};
 
-	private gameRunStopToggle() {
+	gameRunStopToggle = () => {
 		this.setState((state) => {
 			let runningGame = state.isRunningGame;
 			runningGame = !runningGame;
@@ -165,16 +164,16 @@ export class GameOfLifeProto extends React.Component<
 				isRunningGame: runningGame,
 			};
 		});
-	}
+	};
 
-	speedChange(e: React.ChangeEvent<HTMLInputElement>) {
+	speedChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		e.preventDefault();
 		const target = e.target.value;
 
 		this.setState({
 			speedValue: Number(target),
 		});
-	}
+	};
 
 	componentDidMount() {
 		this.setNewBoard();
@@ -209,9 +208,9 @@ export class GameOfLifeProto extends React.Component<
 					onClick={this.gameRunStopToggle}
 				/>
 				{' / '}
-				<BtnClearBoard onClick={this.clearBoard} />
+				<BtnCommon text={'Очистить'} onClick={this.clearBoard} />
 				{' / '}
-				<BtnNewBoard onClick={this.updateBoard} />
+				<BtnCommon text={'Обновить'} onClick={this.updateBoard} />
 				{' / '}
 				<InputSpeed
 					speedValue={this.state.speedValue}
