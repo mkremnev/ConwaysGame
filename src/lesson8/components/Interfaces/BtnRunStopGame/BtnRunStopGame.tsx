@@ -6,11 +6,11 @@ export const BtnRunStopGame: FC<BtnRunStopGameType> = ({
 	onClick,
 }) => {
 	return isRunningGame ? (
-		<button type="button" onClick={onClick}>
+		<button className="btn btn-stop" type="button" onClick={onClick}>
 			{'Остановить'}
 		</button>
 	) : (
-		<button type="button" onClick={onClick}>
+		<button className="btn btn-run" type="button" onClick={onClick}>
 			{'Начать'}
 		</button>
 	);
