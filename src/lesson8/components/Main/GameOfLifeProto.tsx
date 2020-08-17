@@ -8,6 +8,7 @@ import {
 import { BtnCommon } from '../Interfaces/BtnCommon/BtnCommon';
 import { BtnRunStopGame } from '../Interfaces/BtnRunStopGame/BtnRunStopGame';
 import { InputSpeed } from '../Interfaces/InputSpeed/InputSpeed';
+import { Modal } from '../Modal/Modal';
 
 export class GameOfLifeProto extends React.Component<
 	FieldPropsInterface,
@@ -28,6 +29,8 @@ export class GameOfLifeProto extends React.Component<
 			fieldState: [],
 			isRunningGame: false,
 			speedValue: 500,
+			show: false,
+			setShow: (x: boolean) => x,
 		};
 	}
 
@@ -176,7 +179,7 @@ export class GameOfLifeProto extends React.Component<
 	};
 
 	alertClick = () => {
-		alert('Нажали кнопку Начать');
+		this.setState({ show: !this.state.show });
 	};
 
 	componentDidMount() {
@@ -210,7 +213,8 @@ export class GameOfLifeProto extends React.Component<
 			this.state.fieldState !== nextState.fieldState ||
 			this.state.speedValue !== nextState.speedValue ||
 			this.props.rows !== nextProps.rows ||
-			this.props.columns !== nextProps.columns
+			this.props.columns !== nextProps.columns ||
+			this.state.show !== nextState.show
 		);
 	}
 	componentWillUnmount() {
@@ -239,6 +243,7 @@ export class GameOfLifeProto extends React.Component<
 					speedValue={this.state.speedValue}
 					onChange={this.speedChange}
 				/>
+				<Modal show={this.state.show} />
 			</>
 		);
 	}

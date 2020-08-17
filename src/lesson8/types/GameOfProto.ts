@@ -14,4 +14,6 @@ export interface FieldState {
 	fieldState: boolean[][];
 	isRunningGame: boolean;
 	speedValue: number;
+	show: boolean;
+	setShow: (x: boolean) => boolean;
 }
