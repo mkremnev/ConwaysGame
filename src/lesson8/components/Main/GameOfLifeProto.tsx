@@ -175,8 +175,14 @@ export class GameOfLifeProto extends React.Component<
 		});
 	};
 
+	alertClick = () => {
+		alert('Нажали кнопку Начать');
+	};
+
 	componentDidMount() {
 		this.setNewBoard();
+		const btnRun = document.querySelector('.btn-run');
+		btnRun?.addEventListener('click', this.alertClick);
 	}
 
 	componentDidUpdate(prevProps: FieldPropsInterface, prevState: FieldState) {
@@ -193,6 +199,23 @@ export class GameOfLifeProto extends React.Component<
 				this.gameOflife();
 			}, speedValue);
 		}
+	}
+
+	shouldComponentUpdate(
+		nextProps: FieldPropsInterface,
+		nextState: FieldState,
+	) {
+		return (
+			this.state.isRunningGame !== nextState.isRunningGame ||
+			this.state.fieldState !== nextState.fieldState ||
+			this.state.speedValue !== nextState.speedValue ||
+			this.props.rows !== nextProps.rows ||
+			this.props.columns !== nextProps.columns
+		);
+	}
+	componentWillUnmount() {
+		const btnRun = document.querySelector('.btn-run');
+		btnRun?.removeEventListener('click', this.alertClick);
 	}
 
 	render() {
