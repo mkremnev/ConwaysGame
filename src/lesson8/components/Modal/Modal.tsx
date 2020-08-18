@@ -1,17 +1,17 @@
 import React, { FC } from 'react';
-import { css, jsx } from '@emotion/core';
+import { css } from '@emotion/core';
 import type { ModalTypes } from '../../types/Modal';
 
 const modalWindow = css`
 	position: absolute;
-	top: 10px;
-	right: 10px;
+	top: 10;
+	right: 10;
 `;
 
 export const Modal: FC<ModalTypes> = ({ show }) => {
 	if (show) {
 		return (
-			<div css={modalWindow}>
+			<div css={modalWindow} className="modal">
 				<p>Нажата кнопка!</p>
 			</div>
 		);
