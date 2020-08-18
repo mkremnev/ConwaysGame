@@ -7,9 +7,10 @@ module.exports = {
 	devtool: 'source-map',
 	resolve: {
 		extensions: ['.js', '.jsx', '.ts', '.tsx', '.json'],
+		modules: ['node_modules', path.resolve(__dirname)],
 		alias: {
-			types: path.resolve(__dirname, 'src/types'),
-			components: path.resolve(__dirname, 'src/components'),
+			types: path.resolve(__dirname, 'src/lesson8/types'),
+			components: path.resolve(__dirname, 'src/lesson8/components'),
 			'@': path.resolve(__dirname, 'src'),
 		},
 	},
@@ -33,8 +34,14 @@ module.exports = {
 				],
 			},
 			{
-				test: /\.css$/,
-				use: ['style-loader', 'css-loader'],
+				test: /\.s?css$/,
+				//TODO error for storybook,bugfix this later
+				exclude: /\.css$/,
+				use: [
+					'style-loader',
+					{ loader: 'css-loader', options: { modules: true } },
+					'postcss-loader',
+				],
 			},
 		],
 	},
