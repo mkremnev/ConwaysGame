@@ -34,9 +34,7 @@ module.exports = {
 				],
 			},
 			{
-				test: /\.s?css$/,
-				//TODO error for storybook,bugfix this later
-				exclude: /\.css$/,
+				test: /\.css$/,
 				use: [
 					'style-loader',
 					{ loader: 'css-loader', options: { modules: true } },
