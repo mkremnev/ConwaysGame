@@ -9,6 +9,8 @@ module.exports = {
 		'@storybook/addon-links',
 		'@storybook/addon-knobs/register',
 		'@storybook/addon-storysource',
+		'@storybook/addon-docs',
+		'@storybook/addon-controls',
 	],
 	webpackFinal: (config) => {
 		config.plugins.push(new webpack.HotModuleReplacementPlugin());
@@ -31,8 +33,6 @@ module.exports = {
 				{
 					loader: require.resolve('react-docgen-typescript-loader'),
 					options: {
-						// Provide the path to your tsconfig.json so that your stories can
-						// display types from outside each individual story.
 						tsconfigPath: path.resolve(
 							__dirname,
 							'../tsconfig.json',
@@ -51,12 +51,10 @@ module.exports = {
 
 		return {
 			...config,
-			resolve: {
-				extensions: custom.resolve.extensions,
-			},
+			resolve: custom.resolve,
 			module: {
 				...config.module,
-				rules: [...config.module.rules],
+				rules: [...config.module.rules, ...custom.module.rules],
 			},
 		};
 	},

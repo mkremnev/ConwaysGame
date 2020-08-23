@@ -3,7 +3,17 @@ module.exports = {
 		['@babel/preset-env', { targets: 'defaults' }],
 		'@babel/preset-typescript',
 		'@babel/preset-react',
-		'@emotion/babel-preset-css-prop',
+		[
+			'@emotion/babel-preset-css-prop',
+			{
+				options: {
+					autoLabel: true,
+					labelFormat: '[local]',
+					useBuiltIns: false,
+					throwIfNamespace: true,
+				},
+			},
+		],
 	],
 	plugins: ['@babel/plugin-proposal-class-properties'],
 	env: {
