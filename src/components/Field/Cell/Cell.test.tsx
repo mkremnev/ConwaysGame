@@ -1,27 +1,102 @@
+/** @jsx jsx */
 import React from 'react';
 import { mount } from 'enzyme';
 import { Cell } from './Cell';
+import serializer from 'jest-emotion';
+import { jsx } from '@emotion/core';
+import renderer from 'react-test-renderer';
 
-test.each`
-	inputfilled | expected
-	${true}     | ${'<button class="cell cell-filled"></button>'}
-	${false}    | ${'<button class="cell cell-empty"></button>'}
-`('renders cell for empty or filled', ({ inputfilled, expected }) => {
+expect.addSnapshotSerializer(serializer);
+
+test('Cell renders status allive correctly', () => {
 	const onClick = jest.fn();
-	const cellItem = mount(
-		<Cell filled={inputfilled} x={1} y={2} onClick={onClick} />,
-	);
+	expect(
+		renderer
+			.create(<Cell filled={true} x={1} y={2} onClick={onClick} />)
+			.toJSON(),
+	).toMatchInlineSnapshot(`
+		.emotion-0 {
+		  background: #fff;
+		  border: 1px solid #999;
+		  font-size: 34px;
+		  font-weight: bold;
+		  line-height: 34px;
+		  height: 34px;
+		  text-align: center;
+		  width: 34px;
+		  display: -webkit-inline-box;
+		  display: -webkit-inline-flex;
+		  display: -ms-inline-flexbox;
+		  display: inline-flex;
+		  outline: none;
+		  margin-right: -1px;
+		  margin-top: -1px;
+		  padding: 0;
+		  overflow: hidden;
+		  border-color: gray;
+		  background: black;
+		}
 
-	expect(cellItem.html()).toBe(expected);
+		<button
+		  className="emotion-0 emotion-1"
+		  onClick={[Function]}
+		/>
+	`);
 });
 
-describe('testing simulate field', () => {
-	it('calls onclick callback on onclick Cell', () => {
-		const onClick = jest.fn();
-		const wrapper = mount(
-			<Cell filled={true} x={1} y={2} onClick={onClick} />,
-		);
-		wrapper.simulate('click');
-		expect(onClick).toHaveBeenCalled();
-	});
+test('Cell renders status died correctly', () => {
+	const onClick = jest.fn();
+	expect(
+		renderer
+			.create(<Cell filled={false} x={1} y={2} onClick={onClick} />)
+			.toJSON(),
+	).toMatchInlineSnapshot(`
+		.emotion-0 {
+		  background: #fff;
+		  border: 1px solid #999;
+		  font-size: 34px;
+		  font-weight: bold;
+		  line-height: 34px;
+		  height: 34px;
+		  text-align: center;
+		  width: 34px;
+		  display: -webkit-inline-box;
+		  display: -webkit-inline-flex;
+		  display: -ms-inline-flexbox;
+		  display: inline-flex;
+		  outline: none;
+		  margin-right: -1px;
+		  margin-top: -1px;
+		  padding: 0;
+		  overflow: hidden;
+		  border-color: gray;
+		}
+
+		<button
+		  className="emotion-0 emotion-1"
+		  onClick={[Function]}
+		/>
+	`);
+});
+
+test('Cell simulate clicked correctly', () => {
+	const onClick = jest.fn();
+
+	const wrapper = mount(
+		<Cell filled={false} x={1} y={3} onClick={onClick} />,
+	);
+	wrapper.find('button').simulate('click');
+	expect(onClick).toHaveBeenCalled();
+});
+
+test('Cell simulate clicked with x and y correctly', () => {
+	const onClick = jest.fn();
+	const x = 12,
+		y = 10;
+
+	const wrapper = mount(
+		<Cell filled={false} x={x} y={y} onClick={onClick} />,
+	);
+	wrapper.find('button').simulate('click');
+	expect(onClick).toHaveBeenCalledWith(x, y);
 });
