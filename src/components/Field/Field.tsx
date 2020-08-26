@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import { Cell } from '../Cell/Cell';
+import { Cell } from './Cell/Cell';
 import './Field.css';
 import type { FieldProps } from '../../types/Field';
 
