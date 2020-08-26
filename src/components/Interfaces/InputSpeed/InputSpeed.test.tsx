@@ -3,20 +3,30 @@ import { mount } from 'enzyme';
 import { InputSpeed } from './InputSpeed';
 import renderer from 'react-test-renderer';
 
-describe('BtnClearBoard', () => {
-	it('renders button clear board', () => {
+describe('Testing interfaces onchange speed game', () => {
+	it('Renders input type range', () => {
 		expect(
 			renderer
 				.create(<InputSpeed speedValue={500} onChange={jest.fn()} />)
 				.toJSON(),
-		).toMatchSnapshot();
-	});
-	it('renders button clear board', () => {
-		expect(
-			renderer
-				.create(<InputSpeed speedValue={500} onChange={jest.fn()} />)
-				.toJSON(),
-		).toMatchSnapshot();
+		).toMatchInlineSnapshot(`
+		Array [
+		  <input
+		    max="1000"
+		    min="50"
+		    name="speedValue"
+		    onChange={[MockFunction]}
+		    step="50"
+		    type="range"
+		    value={500}
+		  />,
+		  <label
+		    htmlFor="speedValue"
+		  >
+		    Изменить скорость
+		  </label>,
+		]
+	`);
 	});
 	it('calls change callback on change input', () => {
 		const onChange = jest.fn();

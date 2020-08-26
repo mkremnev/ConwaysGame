@@ -4,6 +4,6 @@ import { GameOfLifeProto } from './components/Main/GameOfLifeProto';
 import { Field } from './components/Field/Field';
 
 ReactDOM.render(
-	<GameOfLifeProto rows={5} columns={5} fieldComponent={Field} />,
+	<GameOfLifeProto rows={20} columns={20} fieldComponent={Field} />,
 	document.getElementById('app'),
 );

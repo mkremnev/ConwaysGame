@@ -1,10 +1,22 @@
 import React, { FC } from 'react';
 import { Cell } from './Cell/Cell';
-import './Field.css';
 import type { FieldProps } from '../../types/Field';
+import styled from '@emotion/styled';
+
+const NextLine = styled.p`
+	margin: 0;
+	padding: 0;
+	line-height: 0;
+`;
+
+const WrapperField = styled.div`
+	margin: 0;
+	padding: 0;
+	line-height: 0;
+`;
 
 export const Field: FC<FieldProps> = ({ field, onClick }) => (
-	<div className="field">
+	<WrapperField>
 		{field.map((row, y) => [
 			...row.map((_filled: boolean, x) => (
 				<Cell
@@ -15,7 +27,7 @@ export const Field: FC<FieldProps> = ({ field, onClick }) => (
 					onClick={() => onClick(y, x)}
 				/>
 			)),
-			y !== row.length - 1 ? <p key={y} /> : null,
+			y !== row.length - 1 ? <NextLine key={y} /> : null,
 		])}
-	</div>
+	</WrapperField>
 );

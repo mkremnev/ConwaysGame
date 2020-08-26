@@ -1,14 +1,11 @@
 import React from 'react';
-import './GameOfLifeProto.css';
 import {
 	FieldPropsComponent,
 	FieldPropsInterface,
 	FieldState,
 } from '../../types/GameOfProto';
-import { BtnCommon } from '../Interfaces/BtnCommon/BtnCommon';
-import { BtnRunStopGame } from '../Interfaces/BtnRunStopGame/BtnRunStopGame';
+import { Button } from '../../components/Interfaces/Button/Button';
 import { InputSpeed } from '../Interfaces/InputSpeed/InputSpeed';
-import { Modal } from '../Modal/Modal';
 
 export class GameOfLifeProto extends React.Component<
 	FieldPropsInterface,
@@ -29,8 +26,6 @@ export class GameOfLifeProto extends React.Component<
 			fieldState: [],
 			isRunningGame: false,
 			speedValue: 500,
-			show: false,
-			setShow: (x: boolean) => x,
 		};
 	}
 
@@ -178,14 +173,8 @@ export class GameOfLifeProto extends React.Component<
 		});
 	};
 
-	alertClick = () => {
-		this.setState({ show: !this.state.show });
-	};
-
 	componentDidMount() {
 		this.setNewBoard();
-		const btnRun = document.querySelector('.btn-run');
-		btnRun?.addEventListener('click', this.alertClick);
 	}
 
 	componentDidUpdate(prevProps: FieldPropsInterface, prevState: FieldState) {
@@ -213,37 +202,32 @@ export class GameOfLifeProto extends React.Component<
 			this.state.fieldState !== nextState.fieldState ||
 			this.state.speedValue !== nextState.speedValue ||
 			this.props.rows !== nextProps.rows ||
-			this.props.columns !== nextProps.columns ||
-			this.state.show !== nextState.show
+			this.props.columns !== nextProps.columns
 		);
-	}
-	componentWillUnmount() {
-		const btnRun = document.querySelector('.btn-run');
-		btnRun?.removeEventListener('click', this.alertClick);
 	}
 
 	render() {
 		const FieldComponent = this.fieldComponent;
+		const { isRunningGame, speedValue } = this.state;
 		return (
 			<>
 				<FieldComponent
 					field={this.state.fieldState}
 					onClick={this.onClick}
 				/>
-				<BtnRunStopGame
-					isRunningGame={this.state.isRunningGame}
+				<Button
+					text={isRunningGame ? 'Остановить' : 'Начать'}
 					onClick={this.gameRunStopToggle}
 				/>
 				{' / '}
-				<BtnCommon text={'Очистить'} onClick={this.clearBoard} />
+				<Button text={'Очистить'} onClick={this.clearBoard} />
 				{' / '}
-				<BtnCommon text={'Обновить'} onClick={this.updateBoard} />
+				<Button text={'Обновить'} onClick={this.updateBoard} />
 				{' / '}
 				<InputSpeed
-					speedValue={this.state.speedValue}
+					speedValue={speedValue}
 					onChange={this.speedChange}
 				/>
-				<Modal show={this.state.show} />
 			</>
 		);
 	}
