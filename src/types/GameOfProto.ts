@@ -8,10 +8,12 @@ export interface FieldPropsInterface {
 	columns: number;
 	timerID?: NodeJS.Timeout;
 	fieldComponent: FieldPropsComponent;
+	onSubmit: () => void;
 }
 
 export interface FieldState {
 	fieldState: boolean[][];
 	isRunningGame: boolean;
 	speedValue: number;
+	name: string;
 }

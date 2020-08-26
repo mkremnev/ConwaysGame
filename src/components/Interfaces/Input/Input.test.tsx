@@ -1,13 +1,20 @@
 import React from 'react';
 import { mount } from 'enzyme';
-import { InputSpeed } from './InputSpeed';
+import { Input } from './Input';
 import renderer from 'react-test-renderer';
 
 describe('Testing interfaces onchange speed game', () => {
 	it('Renders input type range', () => {
 		expect(
 			renderer
-				.create(<InputSpeed speedValue={500} onChange={jest.fn()} />)
+				.create(
+					<Input
+						type={'range'}
+						name="speedValue"
+						value={500}
+						onChange={jest.fn()}
+					/>,
+				)
 				.toJSON(),
 		).toMatchInlineSnapshot(`
 		Array [
@@ -31,7 +38,12 @@ describe('Testing interfaces onchange speed game', () => {
 	it('calls change callback on change input', () => {
 		const onChange = jest.fn();
 		const wrapper = mount(
-			<InputSpeed speedValue={500} onChange={onChange} />,
+			<Input
+				type={'range'}
+				name="speedValue"
+				value={500}
+				onChange={onChange}
+			/>,
 		);
 		wrapper.simulate('change');
 		expect(onChange).toHaveBeenCalled();

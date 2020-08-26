@@ -15,19 +15,21 @@ const WrapperField = styled.div`
 	line-height: 0;
 `;
 
-export const Field: FC<FieldProps> = ({ field, onClick }) => (
-	<WrapperField>
-		{field.map((row, y) => [
-			...row.map((_filled: boolean, x) => (
-				<Cell
-					key={`${x}_${y}`}
-					filled={field[y][x]}
-					x={x}
-					y={y}
-					onClick={() => onClick(y, x)}
-				/>
-			)),
-			y !== row.length - 1 ? <NextLine key={y} /> : null,
-		])}
-	</WrapperField>
-);
+export const Field: FC<FieldProps> = ({ field, onClick }) => {
+	return (
+		<WrapperField>
+			{field.map((row, y) => [
+				...row.map((_filled: boolean, x) => (
+					<Cell
+						key={`${x}_${y}`}
+						filled={field[y][x]}
+						x={x}
+						y={y}
+						onClick={() => onClick(y, x)}
+					/>
+				)),
+				y !== row.length - 1 ? <NextLine key={y} /> : null,
+			])}
+		</WrapperField>
+	);
+};

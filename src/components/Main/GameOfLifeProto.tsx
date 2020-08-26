@@ -5,7 +5,8 @@ import {
 	FieldState,
 } from '../../types/GameOfProto';
 import { Button } from '../../components/Interfaces/Button/Button';
-import { InputSpeed } from '../Interfaces/InputSpeed/InputSpeed';
+import { Input } from '../Interfaces/Input/Input';
+import { InputName } from '../Users/InputName';
 
 export class GameOfLifeProto extends React.Component<
 	FieldPropsInterface,
@@ -26,6 +27,7 @@ export class GameOfLifeProto extends React.Component<
 			fieldState: [],
 			isRunningGame: false,
 			speedValue: 500,
+			name: '',
 		};
 	}
 
@@ -173,6 +175,20 @@ export class GameOfLifeProto extends React.Component<
 		});
 	};
 
+	handleSubmit = (ev: React.FormEvent) => {
+		ev.preventDefault();
+	};
+
+	handleFormChange = (
+		ev:
+			| React.FormEvent<HTMLInputElement>
+			| React.ChangeEvent<HTMLInputElement>,
+	) => {
+		this.setState({
+			name: (ev.target as HTMLInputElement).value,
+		});
+	};
+
 	componentDidMount() {
 		this.setNewBoard();
 	}
@@ -202,15 +218,17 @@ export class GameOfLifeProto extends React.Component<
 			this.state.fieldState !== nextState.fieldState ||
 			this.state.speedValue !== nextState.speedValue ||
 			this.props.rows !== nextProps.rows ||
-			this.props.columns !== nextProps.columns
+			this.props.columns !== nextProps.columns ||
+			this.state.name !== nextState.name
 		);
 	}
 
 	render() {
 		const FieldComponent = this.fieldComponent;
-		const { isRunningGame, speedValue } = this.state;
+		const { isRunningGame, speedValue, name } = this.state;
 		return (
 			<>
+				<div>{name || 'Default'}</div>
 				<FieldComponent
 					field={this.state.fieldState}
 					onClick={this.onClick}
@@ -224,10 +242,24 @@ export class GameOfLifeProto extends React.Component<
 				{' / '}
 				<Button text={'Обновить'} onClick={this.updateBoard} />
 				{' / '}
-				<InputSpeed
-					speedValue={speedValue}
+				<Input
+					type={'range'}
+					value={speedValue}
+					name={'speedValue'}
+					min={'50'}
+					max={'1000'}
+					step={'50'}
 					onChange={this.speedChange}
 				/>
+				{' / '}
+				<InputName onSubmit={this.handleSubmit}>
+					<Input
+						type={'text'}
+						name={'userName'}
+						value={name}
+						onChange={this.handleFormChange}
+					/>
+				</InputName>
 			</>
 		);
 	}
