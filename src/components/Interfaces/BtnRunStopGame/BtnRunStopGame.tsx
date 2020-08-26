@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import { BtnRunStopGameType } from '../../../types/Interfaces/BtnRunStopGameType';
+import { BtnRunStopGameType } from '../../../Interfaces/BtnRunStopGameType';
 
 export const BtnRunStopGame: FC<BtnRunStopGameType> = ({
 	isRunningGame,

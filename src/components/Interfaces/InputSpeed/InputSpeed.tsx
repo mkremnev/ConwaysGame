@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import { InputSpeedType } from '../../../types/Interfaces/InputSpeedType';
+import { InputSpeedType } from '../../../Interfaces/InputSpeedType';
 
 export const InputSpeed: FC<InputSpeedType> = ({ speedValue, onChange }) => {
 	return (
