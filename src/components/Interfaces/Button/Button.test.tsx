@@ -19,7 +19,7 @@ describe('BtnClearBoard', () => {
 				.toJSON(),
 		).toMatchInlineSnapshot(`
 		<button
-		  className="css-5j6pah-Btn e1tse95j0"
+		  className="css-6eqsac-Btn e1tse95j0"
 		  color="#fff"
 		  onClick={[MockFunction]}
 		  radius="20px 20px"
@@ -35,7 +35,7 @@ describe('BtnClearBoard', () => {
 				.toJSON(),
 		).toMatchInlineSnapshot(`
 		<button
-		  className="css-1k7tqxn-Btn e1tse95j0"
+		  className="css-1mxdw7a-Btn e1tse95j0"
 		  onClick={[MockFunction]}
 		>
 		  Остановить

@@ -11,9 +11,6 @@ export type StyledType = {
 export type ButtonType = {
 	text: string;
 	onClick: () => void;
-	color?: string;
-	radius?: string;
-	backgroundColor?: string;
 };
 
 const styleButton = (props: StyledType) => css`
@@ -28,7 +25,9 @@ const Btn = styled.button`
 	${styleButton}
 `;
 
-export const Button: FC<ButtonType> = ({ ...props }) => {
+export const Button: FC<ButtonType & ButtonType> = ({
+	...props
+}: StyledType & ButtonType) => {
 	return (
 		<Btn
 			onClick={props.onClick}
