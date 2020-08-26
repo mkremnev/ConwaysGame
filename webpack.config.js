@@ -33,12 +33,33 @@ module.exports = {
 					},
 				],
 			},
+			// {
+			// 	test: /\.s?css$/,
+			// 	//TODO error for storybook,bugfix this later
+			// 	exclude: /\.css$/,
+			// 	use: [
+			// 		'style-loader',
+			// 		{ loader: 'css-loader', options: { modules: true } },
+			// 		'postcss-loader',
+			// 	],
+			// },
 			{
 				test: /\.css$/,
 				use: [
-					'style-loader',
-					{ loader: 'css-loader', options: { modules: true } },
-					'postcss-loader',
+					'/root/mkremnev/project/netlinux/app-calc/node_modules/style-loader/dist/cjs.js',
+					{
+						loader:
+							'/root/mkremnev/project/netlinux/app-calc/node_modules/@storybook/core/node_modules/css-loader/dist/cjs.js',
+						options: { importLoaders: 1 },
+					},
+					{
+						loader:
+							'/root/mkremnev/project/netlinux/app-calc/node_modules/postcss-loader/src/index.js',
+						options: {
+							ident: 'postcss',
+							postcss: {},
+						},
+					},
 				],
 			},
 		],
