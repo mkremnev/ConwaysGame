@@ -1,14 +1,12 @@
 import React from 'react';
-import './GameOfLifeProto.css';
 import {
 	FieldPropsComponent,
 	FieldPropsInterface,
 	FieldState,
 } from '../../types/GameOfProto';
-import { BtnCommon } from '../Interfaces/BtnCommon/BtnCommon';
-import { BtnRunStopGame } from '../Interfaces/BtnRunStopGame/BtnRunStopGame';
-import { InputSpeed } from '../Interfaces/InputSpeed/InputSpeed';
-import { Modal } from '../Modal/Modal';
+import { Button } from '../../components/Interfaces/Button/Button';
+import { Input } from '../Interfaces/Input/Input';
+import { InputName } from '../Users/InputName';
 
 export class GameOfLifeProto extends React.Component<
 	FieldPropsInterface,
@@ -29,8 +27,7 @@ export class GameOfLifeProto extends React.Component<
 			fieldState: [],
 			isRunningGame: false,
 			speedValue: 500,
-			show: false,
-			setShow: (x: boolean) => x,
+			name: '',
 		};
 	}
 
@@ -178,14 +175,22 @@ export class GameOfLifeProto extends React.Component<
 		});
 	};
 
-	alertClick = () => {
-		this.setState({ show: !this.state.show });
+	handleSubmit = (ev: React.FormEvent) => {
+		ev.preventDefault();
+	};
+
+	handleFormChange = (
+		ev:
+			| React.FormEvent<HTMLInputElement>
+			| React.ChangeEvent<HTMLInputElement>,
+	) => {
+		this.setState({
+			name: (ev.target as HTMLInputElement).value,
+		});
 	};
 
 	componentDidMount() {
 		this.setNewBoard();
-		const btnRun = document.querySelector('.btn-run');
-		btnRun?.addEventListener('click', this.alertClick);
 	}
 
 	componentDidUpdate(prevProps: FieldPropsInterface, prevState: FieldState) {
@@ -214,36 +219,47 @@ export class GameOfLifeProto extends React.Component<
 			this.state.speedValue !== nextState.speedValue ||
 			this.props.rows !== nextProps.rows ||
 			this.props.columns !== nextProps.columns ||
-			this.state.show !== nextState.show
+			this.state.name !== nextState.name
 		);
-	}
-	componentWillUnmount() {
-		const btnRun = document.querySelector('.btn-run');
-		btnRun?.removeEventListener('click', this.alertClick);
 	}
 
 	render() {
 		const FieldComponent = this.fieldComponent;
+		const { isRunningGame, speedValue, name } = this.state;
 		return (
 			<>
+				<div>{name || 'Default'}</div>
 				<FieldComponent
 					field={this.state.fieldState}
 					onClick={this.onClick}
 				/>
-				<BtnRunStopGame
-					isRunningGame={this.state.isRunningGame}
+				<Button
+					text={isRunningGame ? 'Остановить' : 'Начать'}
 					onClick={this.gameRunStopToggle}
 				/>
 				{' / '}
-				<BtnCommon text={'Очистить'} onClick={this.clearBoard} />
+				<Button text={'Очистить'} onClick={this.clearBoard} />
 				{' / '}
-				<BtnCommon text={'Обновить'} onClick={this.updateBoard} />
+				<Button text={'Обновить'} onClick={this.updateBoard} />
 				{' / '}
-				<InputSpeed
-					speedValue={this.state.speedValue}
+				<Input
+					type={'range'}
+					value={speedValue}
+					name={'speedValue'}
+					min={'50'}
+					max={'1000'}
+					step={'50'}
 					onChange={this.speedChange}
 				/>
-				<Modal show={this.state.show} />
+				{' / '}
+				<InputName onSubmit={this.handleSubmit}>
+					<Input
+						type={'text'}
+						name={'userName'}
+						value={name}
+						onChange={this.handleFormChange}
+					/>
+				</InputName>
 			</>
 		);
 	}
