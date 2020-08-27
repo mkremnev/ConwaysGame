@@ -4,12 +4,12 @@ export type formType = {
 	onSubmit: (ev: React.FormEvent) => void;
 };
 
-export const InputName: FC<formType> = ({ onSubmit, ...props }) => {
+export const InputName: FC<formType> = ({ onSubmit, children }) => {
 	return (
 		<form onSubmit={onSubmit}>
 			<fieldset>
 				<legend>Введите свое имя</legend>
-				{props.children}
+				{children}
 				<button>Start</button>
 			</fieldset>
 		</form>

@@ -27,7 +27,7 @@ const styleInput = (style: styleInput) => css`
 `;
 
 export const Input = ({ ...props }: InputType & styledInput) => (
-	<input {...props} type={props.type} css={styleInput} />
+	<input {...props} css={styleInput} />
 );
 
 Input.displayName = 'Input';

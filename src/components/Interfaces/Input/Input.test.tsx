@@ -17,22 +17,13 @@ describe('Testing interfaces onchange speed game', () => {
 				)
 				.toJSON(),
 		).toMatchInlineSnapshot(`
-		Array [
-		  <input
-		    max="1000"
-		    min="50"
-		    name="speedValue"
-		    onChange={[MockFunction]}
-		    step="50"
-		    type="range"
-		    value={500}
-		  />,
-		  <label
-		    htmlFor="speedValue"
-		  >
-		    Изменить скорость
-		  </label>,
-		]
+		<input
+		  className="css-15m9agn-Input"
+		  name="speedValue"
+		  onChange={[MockFunction]}
+		  type="range"
+		  value={500}
+		/>
 	`);
 	});
 	it('calls change callback on change input', () => {

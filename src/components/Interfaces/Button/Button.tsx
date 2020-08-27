@@ -25,9 +25,9 @@ const Btn = styled.button`
 	${styleButton}
 `;
 
-export const Button: FC<ButtonType & ButtonType> = ({
-	...props
-}: StyledType & ButtonType) => {
+export const Button: FC<StyledType & ButtonType> = (
+	props: StyledType & ButtonType,
+) => {
 	return (
 		<Btn
 			onClick={props.onClick}
