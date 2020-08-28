@@ -36,4 +36,15 @@ Layout.args = {
 		text: 'Начать',
 		onClick: action('clicked'),
 	},
+	input: {
+		type: 'range',
+		name: 'Name',
+		onChange: (e: React.ChangeEvent<HTMLInputElement>) => {
+			e.preventDefault();
+			action('Input change')(e.target.value);
+		},
+		min: '50',
+		max: '1000',
+		step: '50',
+	},
 };
