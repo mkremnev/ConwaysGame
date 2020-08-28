@@ -41,7 +41,7 @@ export default {
 		text: 'Введите сюда текст',
 		color: '#fff',
 		radius: '20px 20px',
-		backgroundColor: '#000',
+		backgroundColor: '#007bff',
 	},
 };
 

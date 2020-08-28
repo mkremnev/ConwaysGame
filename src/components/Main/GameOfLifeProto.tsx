@@ -7,6 +7,15 @@ import {
 import { Button } from '../../components/Interfaces/Button/Button';
 import { Input } from '../Interfaces/Input/Input';
 import { InputName } from '../Users/InputName';
+import styled from '@emotion/styled';
+
+const GameOfLifeProtoWrapper = styled.div`
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center
+	margin-right: 10px;
+`;
 
 export class GameOfLifeProto extends React.Component<
 	FieldPropsInterface,
@@ -227,7 +236,7 @@ export class GameOfLifeProto extends React.Component<
 		const FieldComponent = this.fieldComponent;
 		const { isRunningGame, speedValue, name } = this.state;
 		return (
-			<>
+			<GameOfLifeProtoWrapper>
 				<div>{name || 'Default'}</div>
 				<FieldComponent
 					field={this.state.fieldState}
@@ -260,7 +269,7 @@ export class GameOfLifeProto extends React.Component<
 						onChange={this.handleFormChange}
 					/>
 				</InputName>
-			</>
+			</GameOfLifeProtoWrapper>
 		);
 	}
 }
