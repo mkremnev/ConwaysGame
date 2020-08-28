@@ -39,17 +39,21 @@ const Btn = styled.button`
 	${styleButton}
 `;
 
-export const Button: FC<StyledType & ButtonType> = (
-	props: StyledType & ButtonType,
-) => {
-	return (
-		<Btn
-			onClick={props.onClick}
-			color={props.color}
-			radius={props.radius}
-			backgroundColor={props.backgroundColor}
-		>
-			{props.text}
-		</Btn>
-	);
-};
+export const Button: FC<StyledType & ButtonType> = React.memo(
+	(props: StyledType & ButtonType) => {
+		return (
+			<Btn
+				onClick={props.onClick}
+				color={props.color}
+				radius={props.radius}
+				backgroundColor={props.backgroundColor}
+			>
+				{props.text}
+			</Btn>
+		);
+	},
+	(prevProps: ButtonType, nextProps: ButtonType) =>
+		prevProps.text === nextProps.text,
+);
+
+Button.displayName = 'Button';

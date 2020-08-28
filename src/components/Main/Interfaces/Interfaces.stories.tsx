@@ -7,15 +7,6 @@ import { action } from '@storybook/addon-actions';
 export default {
 	title: 'Lesson 9 / Interfaces / InterfaceLayout',
 	component: InterfaceLayout,
-	argTypes: {
-		value: {
-			control: { type: null },
-			description: 'Изменение ползунка',
-		},
-		type: {
-			control: { type: 'inline-radio', options: ['range'] },
-		},
-	},
 	parameters: { actions: { argTypesRegex: '^on.*' } },
 };
 

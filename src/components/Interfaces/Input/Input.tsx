@@ -26,8 +26,12 @@ const styleInput = (style: styleInput) => css`
 	size: ${style.size || 10};
 `;
 
-export const Input = ({ ...props }: InputType & styledInput) => (
-	<input {...props} css={styleInput} />
+export const Input = React.memo(
+	({ ...props }: InputType & styledInput) => (
+		<input {...props} css={styleInput} />
+	),
+	(prevProps: styledInput, nextProps: styledInput) =>
+		prevProps.value === nextProps.value,
 );
 
 Input.displayName = 'Input';

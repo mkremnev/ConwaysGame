@@ -19,7 +19,7 @@ export const Field: FC<FieldProps> = ({ field, onClick }) => {
 	return (
 		<WrapperField>
 			{field.map((row, y) => [
-				...row.map((_filled: boolean, x) => (
+				...row.map((columns, x) => (
 					<Cell
 						key={`${x}_${y}`}
 						filled={field[y][x]}
