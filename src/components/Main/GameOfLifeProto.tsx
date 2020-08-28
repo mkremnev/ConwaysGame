@@ -7,6 +7,7 @@ import {
 import { Button } from '../../components/Interfaces/Button/Button';
 import { Input } from '../Interfaces/Input/Input';
 import { InputName } from '../Users/InputName';
+import { InterfaceLayout } from './Interfaces/Interfaces';
 import styled from '@emotion/styled';
 
 const GameOfLifeProtoWrapper = styled.div`
@@ -242,15 +243,14 @@ export class GameOfLifeProto extends React.Component<
 					field={this.state.fieldState}
 					onClick={this.onClick}
 				/>
-				<Button
-					text={isRunningGame ? 'Остановить' : 'Начать'}
-					onClick={this.gameRunStopToggle}
+				<InterfaceLayout
+					button1={{
+						text: isRunningGame ? 'Остановить' : 'Начать',
+						onClick: this.gameRunStopToggle,
+					}}
+					button2={{ text: 'Очистить', onClick: this.clearBoard }}
+					button3={{ text: 'Обновить', onClick: this.updateBoard }}
 				/>
-				{' / '}
-				<Button text={'Очистить'} onClick={this.clearBoard} />
-				{' / '}
-				<Button text={'Обновить'} onClick={this.updateBoard} />
-				{' / '}
 				<Input
 					type={'range'}
 					value={speedValue}
@@ -260,7 +260,6 @@ export class GameOfLifeProto extends React.Component<
 					step={'50'}
 					onChange={this.speedChange}
 				/>
-				{' / '}
 				<InputName onSubmit={this.handleSubmit}>
 					<Input
 						type={'text'}
