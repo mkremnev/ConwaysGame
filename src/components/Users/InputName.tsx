@@ -1,4 +1,4 @@
-import React, { FC, useState, FormEvent } from 'react';
+import React, { FC, useState, useEffect, FormEvent } from 'react';
 import { Input } from '../Interfaces/Input/Input';
 import { Button } from '../Interfaces/Button/Button';
 import styled from '@emotion/styled';
@@ -16,6 +16,7 @@ export const InputName: FC = () => {
 
 	const onSubmit = (ev: FormEvent) => {
 		ev.preventDefault();
+		console.log(name);
 	};
 
 	return (
@@ -26,13 +27,10 @@ export const InputName: FC = () => {
 					<Input
 						type={'text'}
 						onChange={(e) => setName(e.target.value)}
-						name={'UserName'}
+						name="UserName"
 						value={name}
 					/>
-					<Button
-						text={'Отправить'}
-						onClick={onSubmit as () => void}
-					/>
+					<Button type="submit" text={'Отправить'} />
 				</fieldset>
 			</form>
 			<h3>{name}</h3>

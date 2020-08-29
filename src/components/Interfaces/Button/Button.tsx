@@ -10,7 +10,8 @@ export type StyledType = {
 
 export type ButtonType = {
 	text: string;
-	onClick: () => void;
+	type?: string;
+	onClick?: () => void;
 };
 
 const styleButton = (props: StyledType) => css`
