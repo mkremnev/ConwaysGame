@@ -19,6 +19,9 @@ export const InputName: FC = () => {
 		console.log(name);
 	};
 
+	const handleChangeName = (ev: React.ChangeEvent<HTMLInputElement>) =>
+		setName(ev.target.value);
+
 	return (
 		<InputNameWrapper>
 			<form onSubmit={onSubmit}>
@@ -26,7 +29,7 @@ export const InputName: FC = () => {
 					<legend>Введите свое имя</legend>
 					<Input
 						type={'text'}
-						onChange={(e) => setName(e.target.value)}
+						onChange={handleChangeName}
 						name="UserName"
 						value={name}
 					/>
