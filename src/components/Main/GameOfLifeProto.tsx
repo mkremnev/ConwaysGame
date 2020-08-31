@@ -178,20 +178,6 @@ export class GameOfLifeProto extends React.Component<
 		});
 	};
 
-	handleSubmit = (ev: React.FormEvent) => {
-		ev.preventDefault();
-	};
-
-	handleFormChange = (
-		ev:
-			| React.FormEvent<HTMLInputElement>
-			| React.ChangeEvent<HTMLInputElement>,
-	) => {
-		this.setState({
-			name: (ev.target as HTMLInputElement).value,
-		});
-	};
-
 	componentDidMount() {
 		this.setNewBoard();
 	}

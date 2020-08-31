@@ -45,13 +45,15 @@ describe('Testing component Input name', () => {
 	});
 
 	it('Chenge input', () => {
-		const fakeEvent = { preventDefault: jest.fn() };
 		wrapper.find('input').simulate('change', {
 			target: { value: 'maxim' },
 		});
-		// expect(fakeEvent.preventDefault.mock.calls[0][0]).toEqual('Maxim');
-		wrapper.find('form').simulate('submit', fakeEvent);
+		expect(wrapper.find('input').prop('value')).toEqual('maxim');
+	});
+
+	it('Button click', () => {
+		const fakeEvent = { preventDefault: jest.fn() };
+		wrapper.find('button').simulate('submit', fakeEvent);
 		expect(fakeEvent.preventDefault).toHaveBeenCalled();
-		console.log(fakeEvent.preventDefault.mock.instances[0].SyntheticEvent);
 	});
 });

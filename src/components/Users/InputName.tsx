@@ -16,7 +16,9 @@ export const InputName: FC = () => {
 
 	const onSubmit = (ev: FormEvent) => {
 		ev.preventDefault();
-		console.log(name);
+		const post = {
+			name: name,
+		};
 	};
 
 	const handleChangeName = (ev: React.ChangeEvent<HTMLInputElement>) =>
