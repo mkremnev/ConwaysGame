@@ -4,16 +4,15 @@ import {
 	FieldPropsInterface,
 	FieldState,
 } from '../../types/GameOfProto';
-import { Button } from '../../components/Interfaces/Button/Button';
-import { Input } from '../Interfaces/Input/Input';
 import { InputName } from '../Users/InputName';
+import { InterfaceLayout } from './Interfaces/Interfaces';
 import styled from '@emotion/styled';
 
 const GameOfLifeProtoWrapper = styled.div`
 	display: flex;
-	flex-direction: row;
+	flex-direction: column;
 	justify-content: center;
-	align-items: center
+	align-items: center;
 	margin-right: 10px;
 `;
 
@@ -22,15 +21,11 @@ export class GameOfLifeProto extends React.Component<
 	FieldState
 > {
 	private fieldComponent: FieldPropsComponent;
-	private rows: number;
-	private columns: number;
 	public timerID: NodeJS.Timeout;
 
 	constructor(props: FieldPropsInterface) {
 		super(props);
 		this.fieldComponent = props.fieldComponent;
-		this.rows = props.rows;
-		this.columns = props.columns;
 		this.timerID = props.timerID as NodeJS.Timeout;
 		this.state = {
 			fieldState: [],
@@ -177,24 +172,9 @@ export class GameOfLifeProto extends React.Component<
 
 	speedChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		e.preventDefault();
-		const target = e.target.value;
 
 		this.setState({
-			speedValue: Number(target),
-		});
-	};
-
-	handleSubmit = (ev: React.FormEvent) => {
-		ev.preventDefault();
-	};
-
-	handleFormChange = (
-		ev:
-			| React.FormEvent<HTMLInputElement>
-			| React.ChangeEvent<HTMLInputElement>,
-	) => {
-		this.setState({
-			name: (ev.target as HTMLInputElement).value,
+			speedValue: Number(e.target.value),
 		});
 	};
 
@@ -234,41 +214,31 @@ export class GameOfLifeProto extends React.Component<
 
 	render() {
 		const FieldComponent = this.fieldComponent;
-		const { isRunningGame, speedValue, name } = this.state;
+		const { isRunningGame, speedValue } = this.state;
 		return (
 			<GameOfLifeProtoWrapper>
-				<div>{name || 'Default'}</div>
+				<InputName />
 				<FieldComponent
 					field={this.state.fieldState}
 					onClick={this.onClick}
 				/>
-				<Button
-					text={isRunningGame ? 'Остановить' : 'Начать'}
-					onClick={this.gameRunStopToggle}
+				<InterfaceLayout
+					button1={{
+						text: isRunningGame ? 'Остановить' : 'Начать',
+						onClick: this.gameRunStopToggle,
+					}}
+					button2={{ text: 'Очистить', onClick: this.clearBoard }}
+					button3={{ text: 'Обновить', onClick: this.updateBoard }}
+					input={{
+						onChange: this.speedChange,
+						value: speedValue,
+						name: 'speed',
+						type: 'range',
+						min: '50',
+						max: '1000',
+						step: '50',
+					}}
 				/>
-				{' / '}
-				<Button text={'Очистить'} onClick={this.clearBoard} />
-				{' / '}
-				<Button text={'Обновить'} onClick={this.updateBoard} />
-				{' / '}
-				<Input
-					type={'range'}
-					value={speedValue}
-					name={'speedValue'}
-					min={'50'}
-					max={'1000'}
-					step={'50'}
-					onChange={this.speedChange}
-				/>
-				{' / '}
-				<InputName onSubmit={this.handleSubmit}>
-					<Input
-						type={'text'}
-						name={'userName'}
-						value={name}
-						onChange={this.handleFormChange}
-					/>
-				</InputName>
 			</GameOfLifeProtoWrapper>
 		);
 	}

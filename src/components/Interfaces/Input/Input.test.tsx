@@ -18,7 +18,7 @@ describe('Testing interfaces onchange speed game', () => {
 				.toJSON(),
 		).toMatchInlineSnapshot(`
 		<input
-		  className="css-15m9agn-Input"
+		  className="css-899qxt"
 		  name="speedValue"
 		  onChange={[MockFunction]}
 		  type="range"
