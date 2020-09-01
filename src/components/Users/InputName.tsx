@@ -1,4 +1,4 @@
-import React, { FC, useState, useEffect, FormEvent } from 'react';
+import React, { FC, useState, FormEvent, FormEventHandler } from 'react';
 import { Input } from '../Interfaces/Input/Input';
 import { Button } from '../Interfaces/Button/Button';
 import styled from '@emotion/styled';
@@ -11,19 +11,13 @@ const InputNameWrapper = styled.div`
 	margin-bottom: 10px;
 `;
 
-export const InputName: FC = () => {
-	const [name, setName] = useState('Jon Doe');
+type InputNameType = {
+	onSubmit: any;
+	onChange: any;
+	value: string;
+};
 
-	const onSubmit = (ev: FormEvent) => {
-		ev.preventDefault();
-		const post = {
-			name: name,
-		};
-	};
-
-	const handleChangeName = (ev: React.ChangeEvent<HTMLInputElement>) =>
-		setName(ev.target.value);
-
+export const InputName: FC<InputNameType> = ({ onSubmit, onChange, value }) => {
 	return (
 		<InputNameWrapper>
 			<form onSubmit={onSubmit}>
@@ -31,14 +25,13 @@ export const InputName: FC = () => {
 					<legend>Введите свое имя</legend>
 					<Input
 						type={'text'}
-						onChange={handleChangeName}
+						onChange={onChange}
 						name="UserName"
-						value={name}
+						value={value}
 					/>
 					<Button type="submit" text={'Отправить'} />
 				</fieldset>
 			</form>
-			<h3>{name}</h3>
 		</InputNameWrapper>
 	);
 };
