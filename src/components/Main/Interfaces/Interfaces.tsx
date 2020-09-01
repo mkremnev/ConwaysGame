@@ -7,7 +7,7 @@ export type ListButton = {
 	button1: ButtonType;
 	button2: ButtonType;
 	button3: ButtonType;
-	input: InputType & styledInput;
+	input?: InputType & styledInput;
 };
 
 const InterfaceLayoutWrapper = styled.div`
