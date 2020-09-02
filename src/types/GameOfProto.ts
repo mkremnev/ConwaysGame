@@ -8,7 +8,6 @@ export interface FieldPropsInterface {
 	columns: number;
 	timerID?: NodeJS.Timeout;
 	fieldComponent: FieldPropsComponent;
-	onSubmit: () => void;
 }
 
 export interface FieldState {

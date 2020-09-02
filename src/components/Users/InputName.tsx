@@ -1,4 +1,4 @@
-import React, { FC, useState, FormEvent, FormEventHandler } from 'react';
+import React, { FC } from 'react';
 import { Input } from '../Interfaces/Input/Input';
 import { Button } from '../Interfaces/Button/Button';
 import styled from '@emotion/styled';
@@ -35,3 +35,5 @@ export const InputName: FC<InputNameType> = ({ onSubmit, onChange, value }) => {
 		</InputNameWrapper>
 	);
 };
+
+InputName.displayName = 'InputName';

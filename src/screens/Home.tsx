@@ -1,5 +1,14 @@
 import React from 'react';
+import { authorizedCheck } from '@/common/authorizedCheck';
+import { Navigation } from '@/components/View/Navigation';
 
-export const Home: React.FC<{}> = () => {
-	return <div>Home</div>;
+export const HomeView: React.FC<{}> = () => {
+	return (
+		<>
+			<Navigation />
+			<div>Home</div>
+		</>
+	);
 };
+
+export const Home = authorizedCheck(HomeView);
