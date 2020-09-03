@@ -22,7 +22,7 @@ const styleInput = (style: styleInput) => css`
 `;
 
 export const Input = React.memo(
-	({ ...props }: React.HTMLProps<HTMLInputElement>) => {
+	(props: React.HTMLProps<HTMLInputElement>) => {
 		const [value, setValue] = useState(0 || '');
 		return (
 			<input
