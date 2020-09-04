@@ -21,5 +21,5 @@ it('redirects to home page', async () => {
 		.find('form')
 		.simulate('submit', { preventDefault: () => null });
 	expect(login).toHaveBeenCalledWith(name);
-	expect(mockHistory.push).toHaveBeenCalledWith(`/home`);
+	expect(mockHistory.push).toHaveBeenCalledWith(`/`);
 });

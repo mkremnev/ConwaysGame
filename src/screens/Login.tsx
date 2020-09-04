@@ -22,7 +22,7 @@ export const Login: React.FC<{}> = () => {
 		async (ev) => {
 			ev.preventDefault();
 			await login(name);
-			history.push('/home');
+			history.push('/');
 		},
 		[name],
 	);
