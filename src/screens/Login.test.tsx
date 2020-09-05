@@ -13,7 +13,7 @@ jest.mock('@/api/auth', () => ({
 	login: jest.fn(),
 }));
 
-it('redirects to home page', async () => {
+test('redirects to home page', async () => {
 	const name = 'Maxim';
 	const wrapper = mount(<Login />);
 	wrapper.find('input').simulate('change', { target: { value: name } });
