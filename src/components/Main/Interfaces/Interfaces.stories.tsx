@@ -7,7 +7,6 @@ import { action } from '@storybook/addon-actions';
 export default {
 	title: 'Lesson 9 / Interfaces / InterfaceLayout',
 	component: InterfaceLayout,
-	parameters: { actions: { argTypesRegex: '^on.*' } },
 };
 
 export const Layout: Story<ListButton> = (args: ListButton) => (
