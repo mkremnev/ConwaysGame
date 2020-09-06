@@ -4,7 +4,6 @@ import {
 	FieldPropsInterface,
 	FieldState,
 } from '../../types/GameOfProto';
-import { InputName } from '../Users/InputName';
 import { InterfaceLayout } from './Interfaces/Interfaces';
 import styled from '@emotion/styled';
 
@@ -217,7 +216,6 @@ export class GameOfLifeProto extends React.Component<
 		const { isRunningGame, speedValue } = this.state;
 		return (
 			<GameOfLifeProtoWrapper>
-				<InputName />
 				<FieldComponent
 					field={this.state.fieldState}
 					onClick={this.onClick}

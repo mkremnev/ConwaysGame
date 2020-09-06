@@ -1,9 +1,5 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { GameOfLifeProto } from './components/Main/GameOfLifeProto';
-import { Field } from './components/Field/Field';
+import { App } from './App';
 
-ReactDOM.render(
-	<GameOfLifeProto rows={20} columns={20} fieldComponent={Field} />,
-	document.getElementById('app'),
-);
+ReactDOM.render(<App />, document.getElementById('app'));
