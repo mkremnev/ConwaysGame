@@ -1,9 +1,13 @@
 import { Action } from 'redux';
 import * as actionTypes from '@/rdx/actions';
 
-export type SpeedState = number;
+export type SpeedState = {
+	value: number;
+};
 
-const defaultState: SpeedState = 500;
+const defaultState: SpeedState = {
+	value: 500,
+};
 
 export function speed(
 	state: SpeedState = defaultState,
@@ -11,7 +15,9 @@ export function speed(
 ): SpeedState {
 	switch (action.type) {
 		case actionTypes.CHANGE_SPEED: {
-			return action.payload as number;
+			return {
+				value: action.payload,
+			};
 		}
 	}
 
