@@ -52,6 +52,9 @@ export const Navigation: React.FC<{}> = () => {
 			<li>
 				<Link to="/game">Game</Link>
 			</li>
+			<li>
+				<Link to="/redux">Gamewithredux</Link>
+			</li>
 			<button onClick={logOut}>Logout</button>
 		</Nav>
 	);

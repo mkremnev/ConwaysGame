@@ -4,6 +4,7 @@ import { Home } from '@/screens/Home';
 import { Login } from '@/screens/Login';
 import { Rules } from '@/screens/Rules';
 import { GameOfLife } from '@/screens/GameOfLife';
+import { GameOfLifeWithReduxScreen } from '@/screens/GameOfLifeWithRedux';
 import { NotFound } from '@/screens/NotFound';
 import { Navigation } from '@/components/View/Navigation';
 
