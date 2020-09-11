@@ -1,13 +1,13 @@
 import { Action } from 'redux';
 import * as actionTypes from '@/rdx/actions';
 
-type GameFieldState = boolean[][];
+type FieldState = boolean[][];
 const cellGridFillRandom = (
 	rows: number,
 	columns: number,
 	cellStatus = () => Math.random() < 0.3,
 ) => {
-	const grid: GameFieldState = [];
+	const grid: FieldState = [];
 	for (let y = 0; y < rows; y++) {
 		grid[y] = [];
 		for (let x = 0; x < columns; x++) {
@@ -17,12 +17,12 @@ const cellGridFillRandom = (
 	return grid;
 };
 
-const defaultState: GameFieldState = cellGridFillRandom(20, 20);
+const defaultState: FieldState = cellGridFillRandom(20, 20);
 
 export function field(
-	state: GameFieldState = defaultState,
+	state: FieldState = defaultState,
 	action: Action & { payload?: any },
-): GameFieldState {
+): FieldState {
 	switch (action.type) {
 		case actionTypes.SET_CELL: {
 			const { x, y } = action.payload;

@@ -67,7 +67,7 @@ export class GameOfLife extends React.Component<GameOfLifeWithReduxProps, {}> {
 					}}
 					input={{
 						onChange: this.speedChange,
-						value: this.props.speed,
+						value: this.props.speed.value,
 						name: 'speed',
 						type: 'range',
 						min: '50',
