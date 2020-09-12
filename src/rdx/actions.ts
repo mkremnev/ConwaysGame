@@ -3,6 +3,7 @@ export const CLEAR_BOARD = 'CLEAR_BOARD';
 export const UPDATE_BOARD = 'UPDATE_BOARD';
 export const CHANGE_SPEED = 'CHANGE_SPEED';
 export const GAME_RUN = 'GAME_RUN';
+export const IS_GAME = 'IS_GAME';
 
 export type Coordinates = { x: number; y: number };
 export type SpeedState = number | string;
@@ -36,5 +37,11 @@ export function changeSpeed(payload: SpeedState) {
 export function gameRun() {
 	return {
 		type: GAME_RUN,
+	};
+}
+
+export function isGame() {
+	return {
+		type: IS_GAME,
 	};
 }
