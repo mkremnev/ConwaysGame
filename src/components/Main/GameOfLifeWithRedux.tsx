@@ -7,6 +7,7 @@ import {
 	updateBoard,
 	changeSpeed,
 	gameRun,
+	isGame,
 } from '@/rdx/actions';
 import { Field } from '@/components/Field/Field';
 import { connect } from 'react-redux';
@@ -34,12 +35,15 @@ const mapDispatchToProps = {
 	updateBoard,
 	changeSpeed,
 	gameRun,
+	isGame,
 };
 
 type GameOfLifeWithReduxProps = ReturnType<typeof mapStateToProps> &
 	typeof mapDispatchToProps;
 
 export class GameOfLife extends React.Component<GameOfLifeWithReduxProps, {}> {
+	private timerID!: NodeJS.Timeout;
+
 	onClick = (x: number, y: number) => {
 		this.props['setFill']({ x, y });
 	};
@@ -47,6 +51,22 @@ export class GameOfLife extends React.Component<GameOfLifeWithReduxProps, {}> {
 	speedChange = (ev: React.ChangeEvent) => {
 		this.props.changeSpeed((ev.target as HTMLInputElement).value);
 	};
+
+	componentDidUpdate(prevProps: typeof mapDispatchToProps) {
+		const isRunningGame = this.props.run.gameRun;
+		const speed = this.props.speed.value;
+		const gameStarted = !prevProps.gameRun && isRunningGame;
+		const gameStopped = prevProps.gameRun && !isRunningGame;
+		if (isRunningGame || gameStopped) {
+			clearInterval(this.timerID);
+		}
+
+		if (isRunningGame || gameStarted) {
+			this.timerID = setInterval(() => {
+				this.props.isGame();
+			}, speed);
+		}
+	}
 
 	render() {
 		return (
