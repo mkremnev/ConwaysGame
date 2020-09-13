@@ -5,6 +5,7 @@ import { Login } from '@/screens/Login';
 import { Rules } from '@/screens/Rules';
 import { GameOfLife } from '@/screens/GameOfLife';
 import { NotFound } from '@/screens/NotFound';
+import { Navigation } from '@/components/View/Navigation';
 
 export const LocationDisplay = withRouter(({ location }) => (
 	<div data-testid="location-display">{location.pathname}</div>
@@ -13,12 +14,13 @@ export const LocationDisplay = withRouter(({ location }) => (
 export const AppContainer: React.FC<{}> = () => {
 	return (
 		<>
+			<Navigation />
 			<Switch>
 				<Route exact path="/" component={Home} />
 				<Route path="/login" component={Login} />
-				<Route path="/rules" component={Rules}></Route>
-				<Route path="/game" component={GameOfLife}></Route>
-				<Route path="*" component={NotFound}></Route>
+				<Route path="/rules" component={Rules} />
+				<Route path="/game" component={GameOfLife} />
+				<Route path="*" component={NotFound} />
 			</Switch>
 		</>
 	);

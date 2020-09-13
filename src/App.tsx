@@ -1,12 +1,10 @@
 import React from 'react';
-import { Router } from 'react-router-dom';
-import { createMemoryHistory } from 'history';
+import { BrowserRouter as Router } from 'react-router-dom';
 import { AppContainer } from './AppContainer';
 
 export const App: React.FC<{}> = () => {
-	const history = createMemoryHistory();
 	return (
-		<Router history={history}>
+		<Router>
 			<AppContainer />
 		</Router>
 	);
