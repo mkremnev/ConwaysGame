@@ -1,13 +1,15 @@
 import React from 'react';
-import { Router } from 'react-router-dom';
-import { createMemoryHistory } from 'history';
+import { BrowserRouter as Router } from 'react-router-dom';
 import { AppContainer } from './AppContainer';
+import { Provider } from 'react-redux';
+import { store } from './rdx/store';
 
 export const App: React.FC<{}> = () => {
-	const history = createMemoryHistory();
 	return (
-		<Router history={history}>
-			<AppContainer />
-		</Router>
+		<Provider store={store}>
+			<Router>
+				<AppContainer />
+			</Router>
+		</Provider>
 	);
 };
