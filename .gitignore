@@ -101,6 +101,7 @@ dist
 .dynamodb/
 
 # TernJS port file
+.github
 .tern-port
 .vscode
 package-lock.json
