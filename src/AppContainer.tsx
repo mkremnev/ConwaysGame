@@ -21,6 +21,7 @@ export const AppContainer: React.FC<{}> = () => {
 				<Route path="/login" component={Login} />
 				<Route path="/rules" component={Rules} />
 				<Route path="/game" component={GameOfLife} />
+				<Route path="/redux" component={GameOfLifeWithReduxScreen} />
 				<Route path="*" component={NotFound} />
 			</Switch>
 		</>

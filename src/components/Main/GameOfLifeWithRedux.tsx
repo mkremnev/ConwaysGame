@@ -2,7 +2,7 @@ import React from 'react';
 import styled from '@emotion/styled';
 import { GameOfLifeState } from '@/rdx/reducer';
 import {
-	setFill,
+	setCell,
 	clearBoard,
 	updateBoard,
 	changeSpeed,
@@ -30,7 +30,7 @@ function mapStateToProps(state: GameOfLifeState) {
 }
 
 const mapDispatchToProps = {
-	setFill,
+	setCell,
 	clearBoard,
 	updateBoard,
 	changeSpeed,
@@ -45,7 +45,7 @@ export class GameOfLife extends React.Component<GameOfLifeWithReduxProps, {}> {
 	private timerID!: NodeJS.Timeout;
 
 	onClick = (x: number, y: number) => {
-		this.props['setFill']({ x, y });
+		this.props.setCell({ x, y });
 	};
 
 	speedChange = (ev: React.ChangeEvent) => {
