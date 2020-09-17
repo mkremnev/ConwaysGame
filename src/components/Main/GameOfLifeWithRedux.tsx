@@ -3,6 +3,7 @@ import styled from '@emotion/styled';
 import { GameOfLifeState } from '@/rdx/reducer';
 import { changeSpeed, gameRun } from '@/rdx/actions';
 import { fieldActions } from '@/rdx/reducer/field';
+import { dataActions, fetchData } from '@/rdx/reducer/swap';
 import { Field } from '@/components/Field/Field';
 import { connect } from 'react-redux';
 import { InterfaceLayout } from './Interfaces/Interfaces';
@@ -30,6 +31,7 @@ const mapDispatchToProps = {
 	changeSpeed,
 	gameRun,
 	isGame: fieldActions.isGame,
+	dataReturn: fetchData,
 };
 
 type GameOfLifeWithReduxProps = ReturnType<typeof mapStateToProps> &
@@ -61,11 +63,16 @@ export class GameOfLife extends React.Component<GameOfLifeWithReduxProps, {}> {
 			}, +speed);
 		}
 	}
+	data = async () => {
+		const dt = await this.props.dataReturn;
+		return dt;
+	};
 
 	render() {
 		return (
 			<GameOfLifeProtoWrapper>
 				<Field field={this.props.gameField} onClick={this.onClick} />
+				<button onClick={this.data}>Нажать</button>
 				<InterfaceLayout
 					button1={{
 						text: this.props.run.gameRun ? 'Остановить' : 'Начать',
