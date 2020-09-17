@@ -1,12 +1,12 @@
 import { fieldReducers } from './field';
-import { dataReducer } from './swap';
+import { dataReducer } from './flow';
 import { speed } from './speed';
 import { game } from './game';
 import { combineReducers } from 'redux';
 
 export const reducer = combineReducers({
 	field: fieldReducers,
-	swap: dataReducer,
+	flow: dataReducer,
 	speed,
 	game,
 });

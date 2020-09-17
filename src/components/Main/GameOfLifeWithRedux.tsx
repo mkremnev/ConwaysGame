@@ -3,7 +3,7 @@ import styled from '@emotion/styled';
 import { GameOfLifeState } from '@/rdx/reducer';
 import { changeSpeed, gameRun } from '@/rdx/actions';
 import { fieldActions } from '@/rdx/reducer/field';
-import { dataActions, fetchData } from '@/rdx/reducer/swap';
+import { fetchData } from '@/rdx/reducer/flow';
 import { Field } from '@/components/Field/Field';
 import { connect } from 'react-redux';
 import { InterfaceLayout } from './Interfaces/Interfaces';
@@ -21,6 +21,7 @@ function mapStateToProps(state: GameOfLifeState) {
 		gameField: state.field,
 		speed: state.speed,
 		run: state.game,
+		flow: state.flow,
 	};
 }
 
@@ -63,16 +64,11 @@ export class GameOfLife extends React.Component<GameOfLifeWithReduxProps, {}> {
 			}, +speed);
 		}
 	}
-	data = async () => {
-		const dt = await this.props.dataReturn;
-		return dt;
-	};
 
 	render() {
 		return (
 			<GameOfLifeProtoWrapper>
 				<Field field={this.props.gameField} onClick={this.onClick} />
-				<button onClick={this.data}>Нажать</button>
 				<InterfaceLayout
 					button1={{
 						text: this.props.run.gameRun ? 'Остановить' : 'Начать',
@@ -96,6 +92,23 @@ export class GameOfLife extends React.Component<GameOfLifeWithReduxProps, {}> {
 						step: '50',
 					}}
 				/>
+				<button onClick={this.props.dataReturn}>Нажать</button>
+				<div>
+					{this.props.flow.loading && <div>Loading...</div>}
+					{this.props.flow.error && (
+						<div style={{ color: 'red' }}>
+							{JSON.stringify(this.props.flow.error)}
+						</div>
+					)}
+					{this.props.flow.data && (
+						<>
+							<h1>Data</h1>
+							<pre>
+								{JSON.stringify(this.props.flow.data, null, 2)}
+							</pre>
+						</>
+					)}
+				</div>
 			</GameOfLifeProtoWrapper>
 		);
 	}
