@@ -1,5 +1,3 @@
-import { createReducer } from '@reduxjs/toolkit';
-import * as actions from '@/rdx/actions';
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 type FieldState = boolean[][];
