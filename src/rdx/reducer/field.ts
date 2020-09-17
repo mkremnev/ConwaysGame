@@ -1,5 +1,6 @@
 import { createReducer } from '@reduxjs/toolkit';
 import * as actions from '@/rdx/actions';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 type FieldState = boolean[][];
 
@@ -69,22 +70,29 @@ const gameOflife = (state: FieldState, r: number, c: number): FieldState => {
 
 const defaultState: FieldState = cellGridFillRandom(20, 20);
 
-export const field = createReducer<FieldState>(defaultState, {
-	[actions.setCell.type]: (state, action) => {
-		state[action.payload.x][action.payload.y] = !state[action.payload.x][
-			action.payload.y
-		];
-	},
-	[actions.clearBoard.type]: () => {
-		const newState = cellGridFillRandom(20, 20, () => false);
-		return newState;
-	},
-	[actions.updateBoard.type]: () => {
-		const newState = cellGridFillRandom(20, 20);
-		return newState;
-	},
-	[actions.isGame.type]: (state) => {
-		const newState = gameOflife(state, 20, 20);
-		return newState;
+const field = createSlice({
+	name: 'field',
+	initialState: defaultState,
+	reducers: {
+		setCell: (state, action) => {
+			state[action.payload.x][action.payload.y] = !state[
+				action.payload.x
+			][action.payload.y];
+		},
+		clearBoard: () => {
+			const newState = cellGridFillRandom(20, 20, () => false);
+			return newState;
+		},
+		updateBoard: () => {
+			const newState = cellGridFillRandom(20, 20);
+			return newState;
+		},
+		isGame: (state) => {
+			const newState = gameOflife(state, 20, 20);
+			return newState;
+		},
 	},
 });
+
+export const fieldActions = field.actions;
+export const fieldReducers = field.reducer;

@@ -1,14 +1,8 @@
 import React from 'react';
 import styled from '@emotion/styled';
 import { GameOfLifeState } from '@/rdx/reducer';
-import {
-	setCell,
-	clearBoard,
-	updateBoard,
-	changeSpeed,
-	gameRun,
-	isGame,
-} from '@/rdx/actions';
+import { changeSpeed, gameRun } from '@/rdx/actions';
+import { fieldActions } from '@/rdx/reducer/field';
 import { Field } from '@/components/Field/Field';
 import { connect } from 'react-redux';
 import { InterfaceLayout } from './Interfaces/Interfaces';
@@ -30,12 +24,12 @@ function mapStateToProps(state: GameOfLifeState) {
 }
 
 const mapDispatchToProps = {
-	setCell,
-	clearBoard,
-	updateBoard,
+	setCell: fieldActions.setCell,
+	clearBoard: fieldActions.clearBoard,
+	updateBoard: fieldActions.updateBoard,
 	changeSpeed,
 	gameRun,
-	isGame,
+	isGame: fieldActions.isGame,
 };
 
 type GameOfLifeWithReduxProps = ReturnType<typeof mapStateToProps> &
@@ -64,7 +58,7 @@ export class GameOfLife extends React.Component<GameOfLifeWithReduxProps, {}> {
 		if (isRunningGame || gameStarted) {
 			this.timerID = setInterval(() => {
 				this.props.isGame();
-			}, speed);
+			}, +speed);
 		}
 	}
 
