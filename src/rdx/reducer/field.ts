@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 
 type FieldState = boolean[][];
 
-const cellGridFillRandom = (
+export const cellGridFillRandom = (
 	rows: number,
 	columns: number,
 	cellStatus: () => boolean = () => Math.random() < 0.3,
@@ -17,7 +17,11 @@ const cellGridFillRandom = (
 	return grid;
 };
 
-const gameOflife = (state: FieldState, r: number, c: number): FieldState => {
+export const gameOflife = (
+	state: FieldState,
+	r: number,
+	c: number,
+): FieldState => {
 	const nextStep = (prevState: FieldState) => {
 		const prevBoard = prevState;
 		const cloneBoard = state.map((row) => [...row]);
