@@ -558,11 +558,3 @@ describe('ReduxScreen with real store', () => {
 	`);
 	});
 });
-
-describe('Testing function cellGridFillRandom generating random array', () => {
-	it('Compared not equal', () => {
-		const compared = cellGridFillRandom(20, 20);
-		expect(compared).not.toEqual(cellGridFillRandom(20, 20));
-		expect(compared).toHaveLength(20);
-	});
-});
