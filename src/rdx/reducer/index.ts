@@ -1,10 +1,12 @@
-import { field } from './field';
+import { fieldReducers } from './field';
+import { dataReducer } from './flow';
 import { speed } from './speed';
 import { game } from './game';
 import { combineReducers } from 'redux';
 
 export const reducer = combineReducers({
-	field,
+	field: fieldReducers,
+	flow: dataReducer,
 	speed,
 	game,
 });

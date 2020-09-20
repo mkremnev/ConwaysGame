@@ -1,25 +1,18 @@
-import { Action } from 'redux';
-import * as actionTypes from '@/rdx/actions';
+import { createReducer } from '@reduxjs/toolkit';
+import * as actions from '@/rdx/actions';
 
 export type SpeedState = {
-	value: number;
+	value: string;
 };
 
 const defaultState: SpeedState = {
-	value: 500,
+	value: '500',
 };
 
-export function speed(
-	state: SpeedState = defaultState,
-	action: Action & { payload?: any },
-): SpeedState {
-	switch (action.type) {
-		case actionTypes.CHANGE_SPEED: {
-			return {
-				value: action.payload,
-			};
-		}
-	}
-
-	return state;
-}
+export const speed = createReducer<SpeedState>(defaultState, {
+	[actions.changeSpeed.type]: (state, action) => {
+		const newState = state;
+		newState.value = action.payload;
+		return newState;
+	},
+});

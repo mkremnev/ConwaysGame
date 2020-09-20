@@ -1,14 +1,9 @@
 import React from 'react';
 import styled from '@emotion/styled';
 import { GameOfLifeState } from '@/rdx/reducer';
-import {
-	setFill,
-	clearBoard,
-	updateBoard,
-	changeSpeed,
-	gameRun,
-	isGame,
-} from '@/rdx/actions';
+import { changeSpeed, gameRun } from '@/rdx/actions';
+import { fieldActions } from '@/rdx/reducer/field';
+import { fetchData } from '@/rdx/reducer/flow';
 import { Field } from '@/components/Field/Field';
 import { connect } from 'react-redux';
 import { InterfaceLayout } from './Interfaces/Interfaces';
@@ -26,16 +21,18 @@ function mapStateToProps(state: GameOfLifeState) {
 		gameField: state.field,
 		speed: state.speed,
 		run: state.game,
+		flow: state.flow,
 	};
 }
 
 const mapDispatchToProps = {
-	setFill,
-	clearBoard,
-	updateBoard,
+	setCell: fieldActions.setCell,
+	clearBoard: fieldActions.clearBoard,
+	updateBoard: fieldActions.updateBoard,
 	changeSpeed,
 	gameRun,
-	isGame,
+	isGame: fieldActions.isGame,
+	dataReturn: fetchData,
 };
 
 type GameOfLifeWithReduxProps = ReturnType<typeof mapStateToProps> &
@@ -45,7 +42,7 @@ export class GameOfLife extends React.Component<GameOfLifeWithReduxProps, {}> {
 	private timerID!: NodeJS.Timeout;
 
 	onClick = (x: number, y: number) => {
-		this.props['setFill']({ x, y });
+		this.props.setCell({ x, y });
 	};
 
 	speedChange = (ev: React.ChangeEvent) => {
@@ -64,7 +61,7 @@ export class GameOfLife extends React.Component<GameOfLifeWithReduxProps, {}> {
 		if (isRunningGame || gameStarted) {
 			this.timerID = setInterval(() => {
 				this.props.isGame();
-			}, speed);
+			}, +speed);
 		}
 	}
 
@@ -95,6 +92,23 @@ export class GameOfLife extends React.Component<GameOfLifeWithReduxProps, {}> {
 						step: '50',
 					}}
 				/>
+				<button onClick={this.props.dataReturn}>Нажать</button>
+				<div>
+					{this.props.flow.loading && <div>Loading...</div>}
+					{this.props.flow.error && (
+						<div style={{ color: 'red' }}>
+							{JSON.stringify(this.props.flow.error)}
+						</div>
+					)}
+					{this.props.flow.data && (
+						<>
+							<h1>Data</h1>
+							<pre>
+								{JSON.stringify(this.props.flow.data, null, 2)}
+							</pre>
+						</>
+					)}
+				</div>
 			</GameOfLifeProtoWrapper>
 		);
 	}

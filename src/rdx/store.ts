@@ -1,9 +1,16 @@
-import { createStore } from 'redux';
+import { configureStore, getDefaultMiddleware } from '@reduxjs/toolkit';
 import { reducer } from './reducer/index';
 
-export const store = createStore(
+export const store = configureStore({
 	reducer,
-	// https://github.com/zalmoxisus/redux-devtools-extension
-	(window as any).__REDUX_DEVTOOLS_EXTENSION__ &&
-		(window as any).__REDUX_DEVTOOLS_EXTENSION__(),
-);
+	middleware: getDefaultMiddleware({
+		serializableCheck: {
+			ignoredActions: [
+				'field/clearBoard',
+				'field/updateBoard',
+				'field/isGame',
+				'gameRun',
+			],
+		},
+	}),
+});
