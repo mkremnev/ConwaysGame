@@ -12,7 +12,8 @@
 		"build-storybook": "build-storybook",
 		"loki:update": "npm run build-storybook && npx loki update --requireReference --reactUri file:./storybook-static",
 		"loki:approve": "npx loki approve",
-		"test:loki": "npm run build-storybook && npx loki --requireReference --reactUri file:./storybook-static"
+		"test:loki": "npm run build-storybook && npx loki --requireReference --reactUri file:./storybook-static",
+		"heroku-prebuild": "npm install --dev"
 	},
 	"keywords": [
 		"calculation",

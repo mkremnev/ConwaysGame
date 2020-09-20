@@ -1,17 +1,17 @@
 name: Deploy
 
 on:
-  push:
-    branches:
-      - master
+    push:
+        branches:
+            - master
 
 jobs:
-  build:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - uses: akhileshns/heroku-deploy@v3.5.6 # This is the action
-        with:
-          heroku_api_key: ${{secrets.196b7b6e-7eb2-48e7-9fa0-38de4a33a150}}
-          heroku_app_name: "app-calc-latest" #Must be unique in Heroku
-          heroku_email: "m.kremnev@netlinux.ru"
+    build:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v2
+            - uses: akhileshns/heroku-deploy@v3.5.6 # This is the action
+              with:
+                  heroku_api_key: ${{secrets.HEROKU_API_KEY}}
+                  heroku_app_name: 'app-otus' #Must be unique in Heroku
+                  heroku_email: 'm.kremnev@netlinux.ru'
