@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
-import { Input } from '../Interfaces/Input/Input';
-import { Button } from '../Interfaces/Button/Button';
+import { Input } from '@/components/Interfaces/Input/Input';
+import { Button } from '@/components/Interfaces/Button/Button';
 import styled from '@emotion/styled';
 
 const InputNameWrapper = styled.div`
@@ -11,10 +11,10 @@ const InputNameWrapper = styled.div`
 	margin-bottom: 10px;
 `;
 
-type InputNameType = {
+export type InputNameType = {
 	onSubmit: any;
 	onChange: any;
-	value: string;
+	value?: string;
 };
 
 export const InputName: FC<InputNameType> = ({ onSubmit, onChange, value }) => {
