@@ -1,6 +1,10 @@
 import React from 'react';
-import { Button, ButtonType } from '../../Interfaces/Button/Button';
-import { Input, InputType, styledInput } from '../../Interfaces/Input/Input';
+import { Button, ButtonType } from '@/components/Interfaces/Button/Button';
+import {
+	Input,
+	InputType,
+	styledInput,
+} from '@/components/Interfaces/Input/Input';
 import styled from '@emotion/styled';
 
 export type ListButton = {

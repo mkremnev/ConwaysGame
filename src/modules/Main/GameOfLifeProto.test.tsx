@@ -1,8 +1,8 @@
 import React from 'react';
 import { mount } from 'enzyme';
 import { GameOfLifeProto } from './GameOfLifeProto';
-import { Cell } from '../../components/Field/Cell/Cell';
-import { Field } from '../Field/Field';
+import { Cell } from '@/components/Field/Cell/Cell';
+import { Field } from '@/components/Field/Field';
 
 describe('GameOfLifeProto testing', () => {
 	const wrapper = mount(

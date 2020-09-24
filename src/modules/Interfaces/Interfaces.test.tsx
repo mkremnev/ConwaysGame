@@ -39,7 +39,7 @@ describe('Testin interfaces', () => {
 				.toJSON(),
 		).toMatchInlineSnapshot(`
 		<div
-		  className="css-8a9a6o-InterfaceLayoutWrapper epicy620"
+		  className="css-8a9a6o-InterfaceLayoutWrapper emz3rbl0"
 		>
 		  <button
 		    className="css-s63jpt-Btn e1tse95j0"

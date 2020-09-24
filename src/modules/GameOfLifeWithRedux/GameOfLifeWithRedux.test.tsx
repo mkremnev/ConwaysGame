@@ -1,5 +1,5 @@
 import React from 'react';
-import { GameOfLifeWithRedux } from './GameOfLifeWithRedux';
+import { GameOfLifeWithRedux } from '@/modules/GameOfLifeWithRedux/GameOfLifeWithRedux';
 import { Provider } from 'react-redux';
 import { mount } from 'enzyme';
 import { reducer } from '@/rdx/reducer';

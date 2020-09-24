@@ -6,7 +6,7 @@ import { fieldActions } from '@/rdx/reducer/field';
 import { fetchData } from '@/rdx/reducer/flow';
 import { Field } from '@/components/Field/Field';
 import { connect } from 'react-redux';
-import { InterfaceLayout } from './Interfaces/Interfaces';
+import { InterfaceLayout } from '../Interfaces/Interfaces';
 
 const GameOfLifeProtoWrapper = styled.div`
 	display: flex;
