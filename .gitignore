@@ -109,3 +109,7 @@ tmp
 dist
 .storybook
 storybook-static
+
+# stryker temp files
+.stryker-tmp
+reports
