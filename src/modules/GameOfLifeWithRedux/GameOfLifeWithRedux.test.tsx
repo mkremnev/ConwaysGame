@@ -1,9 +1,8 @@
-import { changeSpeed } from './../../rdx/actions';
 import React from 'react';
 import { GameOfLifeWithRedux } from '@/modules/GameOfLifeWithRedux/GameOfLifeWithRedux';
 import { Provider } from 'react-redux';
 import { mount } from 'enzyme';
-import { reducer } from '@/rdx/reducer';
+import { reducer } from '@/store';
 import { createStore } from 'redux';
 import configureStore from 'redux-mock-store';
 import { cellGridFillRandom } from '@/rdx/reducer/field';

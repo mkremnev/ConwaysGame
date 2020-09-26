@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from '@emotion/styled';
-import { GameOfLifeState } from '@/rdx/reducer';
+import { GameOfLifeState } from '@/store';
 import { changeSpeed, gameRun } from '@/rdx/actions';
 import { fieldActions } from '@/rdx/reducer/field';
 import { fetchData } from '@/rdx/reducer/flow';
@@ -22,6 +22,7 @@ function mapStateToProps(state: GameOfLifeState) {
 		speed: state.speed,
 		run: state.game,
 		flow: state.flow,
+		login: state.login,
 	};
 }
 
