@@ -124,6 +124,10 @@ describe('ReduxScreen with real store', () => {
 		  "game": Object {
 		    "gameRun": false,
 		  },
+		  "login": Object {
+		    "status": 0,
+		    "username": "",
+		  },
 		  "speed": Object {
 		    "value": "500",
 		  },
@@ -632,6 +636,10 @@ describe('ReduxScreen with real store', () => {
 		  },
 		  "game": Object {
 		    "gameRun": false,
+		  },
+		  "login": Object {
+		    "status": 0,
+		    "username": "",
 		  },
 		  "speed": Object {
 		    "value": "500",
