@@ -10,6 +10,12 @@ export const logout = async () => {
 	await localStorage.removeItem('login');
 };
 
+export const getUserSession = async () => {
+	await sleep(1000);
+	const login = await localStorage.getItem('login');
+	return login;
+};
+
 export const isLoggedIn = async () => {
 	await sleep(1000);
 	const login = await localStorage.getItem('login');

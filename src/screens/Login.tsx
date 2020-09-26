@@ -1,7 +1,5 @@
-import React, { useCallback, useState } from 'react';
-import { useHistory } from 'react-router-dom';
-import { login } from '@/api/auth';
-import { InputName } from '@/components/Users/InputName';
+import React from 'react';
+import { Login } from '@/modules/Login/Login';
 import styled from '@emotion/styled';
 
 const WrapperInputTime = styled.div`
@@ -14,25 +12,10 @@ const WrapperInputTime = styled.div`
 	height: 100vh;
 `;
 
-export const Login: React.FC<{}> = () => {
-	const [name, setName] = useState('');
-
-	const history = useHistory();
-	const onSubmit = useCallback(
-		async (ev) => {
-			ev.preventDefault();
-			await login(name);
-			history.push('/');
-		},
-		[name],
-	);
-
-	const onChange = (ev: HTMLInputElement) =>
-		setName((ev.target as HTMLInputElement).value);
-
+export const Signin: React.FC<{}> = () => {
 	return (
 		<WrapperInputTime>
-			<InputName onSubmit={onSubmit} onChange={onChange} value={name} />
+			<Login />
 		</WrapperInputTime>
 	);
 };
