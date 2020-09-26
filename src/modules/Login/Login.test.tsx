@@ -1,6 +1,5 @@
 import React from 'react';
 import { mount } from 'enzyme';
-import { InputName } from './InputName';
 import renderer from 'react-test-renderer';
 
 describe('Testing component Input name', () => {

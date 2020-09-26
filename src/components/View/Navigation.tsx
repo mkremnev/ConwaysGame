@@ -1,7 +1,7 @@
-import React, { useCallback } from 'react';
-import { Link, useHistory } from 'react-router-dom';
+import React from 'react';
+import { Link } from 'react-router-dom';
 import styled from '@emotion/styled';
-import { logout } from '@/api/auth';
+import { User } from '@/modules/Login/User';
 
 const Nav = styled.ul`
 	display: flex;
@@ -16,6 +16,10 @@ const Nav = styled.ul`
 		text-decoration: none;
 		display: block;
 		padding: 0.5rem 1rem;
+	}
+	& > li h4 {
+		padding: 0.5rem 1rem;
+		margin: 0;
 	}
 	& button {
 		color: #007bff;
@@ -34,13 +38,6 @@ const Nav = styled.ul`
 `;
 
 export const Navigation: React.FC<{}> = () => {
-	const history = useHistory();
-
-	const logOut = useCallback(async () => {
-		await logout();
-		history.push('/login');
-	}, []);
-
 	return (
 		<Nav>
 			<li>
@@ -55,7 +52,9 @@ export const Navigation: React.FC<{}> = () => {
 			<li>
 				<Link to="/redux">Gamewithredux</Link>
 			</li>
-			<button onClick={logOut}>Logout</button>
+			<li>
+				<User />
+			</li>
 		</Nav>
 	);
 };
