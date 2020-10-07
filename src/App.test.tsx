@@ -18,6 +18,8 @@ describe('Testing App component', () => {
 				</Router>
 			</Provider>,
 		);
-		expect(component.getByRole('heading')).toHaveTextContent('404');
+		expect(
+			component.getByRole('heading', { name: '404' }),
+		).toHaveTextContent('404');
 	});
 });

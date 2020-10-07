@@ -2,7 +2,7 @@ import React from 'react';
 import { GameOfLifeWithRedux } from '@/modules/GameOfLifeWithRedux/GameOfLifeWithRedux';
 import { Provider } from 'react-redux';
 import { mount } from 'enzyme';
-import { reducer } from '@/store';
+import { reducers } from '@/store';
 import { createStore } from 'redux';
 import configureStore from 'redux-mock-store';
 import { cellGridFillRandom } from '@/rdx/reducer/field';
@@ -49,7 +49,7 @@ describe('ReduxScreen with real store', () => {
 	let store: any;
 
 	beforeEach(() => {
-		store = createStore(reducer, {
+		store = createStore(reducers, {
 			field: cellGridFillRandom(5, 5, () => false),
 			speed: {
 				value: '500',
