@@ -8,10 +8,6 @@ import { GameOfLifeWithReduxScreen } from '@/screens/GameOfLifeWithRedux';
 import { NotFound } from '@/screens/NotFound';
 import { Navigation } from '@/components/View/Navigation';
 
-export const LocationDisplay = withRouter(({ location }) => (
-	<div data-testid="location-display">{location.pathname}</div>
-));
-
 export const AppContainer: React.FC<{}> = () => {
 	return (
 		<>
