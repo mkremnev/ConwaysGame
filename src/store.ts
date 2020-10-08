@@ -2,14 +2,11 @@ import { configureStore, getDefaultMiddleware } from '@reduxjs/toolkit';
 import createSagaMiddleware from 'redux-saga';
 import { loginSaga } from '@/modules/Login/saga';
 import { combineReducers } from 'redux';
-import { fieldReducers, dataReducer, speed, game } from '@/rdx/reducer';
 import { LoginSlice } from '@/modules/Login/reducer';
+import { fieldSlice } from '@/modules/GameOfLifeWithRedux/reducer';
 
 export const reducer = combineReducers({
-	field: fieldReducers,
-	flow: dataReducer,
-	speed,
-	game,
+	game: fieldSlice.reducer,
 	login: LoginSlice.reducer,
 });
 

@@ -1,4 +1,4 @@
-import { gameOflife, cellGridFillRandom } from './field';
+import { gameOflife, cellGridFillRandom } from './helpers';
 
 describe('Testing function gameOflife', () => {
 	const comparedObject = {
