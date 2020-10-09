@@ -1,12 +1,10 @@
 import React from 'react';
 import styled from '@emotion/styled';
-import { GameOfLifeState } from '@/rdx/reducer';
-import { changeSpeed, gameRun } from '@/rdx/actions';
-import { fieldActions } from '@/rdx/reducer/field';
-import { fetchData } from '@/rdx/reducer/flow';
+import { GameOfLifeState } from '@/store';
 import { Field } from '@/components/Field/Field';
 import { connect } from 'react-redux';
-import { InterfaceLayout } from '../Interfaces/Interfaces';
+import { InterfaceLayout } from '@/modules/Interfaces/Interfaces';
+import { actions } from './reducer';
 
 const GameOfLifeProtoWrapper = styled.div`
 	display: flex;
@@ -17,22 +15,22 @@ const GameOfLifeProtoWrapper = styled.div`
 `;
 
 function mapStateToProps(state: GameOfLifeState) {
+	const { game, login } = state;
 	return {
-		gameField: state.field,
-		speed: state.speed,
-		run: state.game,
-		flow: state.flow,
+		gameField: game.board,
+		speed: game.value,
+		gameStatus: game.gameStatus,
+		login: login,
 	};
 }
 
 const mapDispatchToProps = {
-	setCell: fieldActions.setCell,
-	clearBoard: fieldActions.clearBoard,
-	updateBoard: fieldActions.updateBoard,
-	changeSpeed,
-	gameRun,
-	isGame: fieldActions.isGame,
-	dataReturn: fetchData,
+	setCell: actions.setCell,
+	clearBoard: actions.clearBoard,
+	updateBoard: actions.updateBoard,
+	changeSpeed: actions.changeSpeed,
+	gameRun: actions.gameRun,
+	isGame: actions.isGame,
 };
 
 type GameOfLifeWithReduxProps = ReturnType<typeof mapStateToProps> &
@@ -49,11 +47,11 @@ export class GameOfLife extends React.Component<GameOfLifeWithReduxProps, {}> {
 		this.props.changeSpeed((ev.target as HTMLInputElement).value);
 	};
 
-	componentDidUpdate(prevProps: typeof mapDispatchToProps) {
-		const isRunningGame = this.props.run.gameRun;
-		const speed = this.props.speed.value;
-		const gameStarted = !prevProps.gameRun && isRunningGame;
-		const gameStopped = prevProps.gameRun && !isRunningGame;
+	componentDidUpdate(prevProps: ReturnType<typeof mapStateToProps>) {
+		const isRunningGame = this.props.gameStatus;
+		const speed = this.props.speed;
+		const gameStarted = !prevProps.gameStatus && isRunningGame;
+		const gameStopped = prevProps.gameStatus && !isRunningGame;
 		if (isRunningGame || gameStopped) {
 			clearInterval(this.timerID);
 		}
@@ -71,7 +69,7 @@ export class GameOfLife extends React.Component<GameOfLifeWithReduxProps, {}> {
 				<Field field={this.props.gameField} onClick={this.onClick} />
 				<InterfaceLayout
 					button1={{
-						text: this.props.run.gameRun ? 'Остановить' : 'Начать',
+						text: this.props.gameStatus ? 'Остановить' : 'Начать',
 						onClick: this.props.gameRun,
 					}}
 					button2={{
@@ -84,7 +82,7 @@ export class GameOfLife extends React.Component<GameOfLifeWithReduxProps, {}> {
 					}}
 					input={{
 						onChange: this.speedChange,
-						value: this.props.speed.value,
+						value: this.props.speed,
 						name: 'speed',
 						type: 'range',
 						min: '50',
@@ -92,23 +90,6 @@ export class GameOfLife extends React.Component<GameOfLifeWithReduxProps, {}> {
 						step: '50',
 					}}
 				/>
-				<button onClick={this.props.dataReturn}>Нажать</button>
-				<div>
-					{this.props.flow.loading && <div>Loading...</div>}
-					{this.props.flow.error && (
-						<div style={{ color: 'red' }}>
-							{JSON.stringify(this.props.flow.error)}
-						</div>
-					)}
-					{this.props.flow.data && (
-						<>
-							<h1>Data</h1>
-							<pre>
-								{JSON.stringify(this.props.flow.data, null, 2)}
-							</pre>
-						</>
-					)}
-				</div>
 			</GameOfLifeProtoWrapper>
 		);
 	}

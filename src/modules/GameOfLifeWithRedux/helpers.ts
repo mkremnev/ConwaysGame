@@ -1,7 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit';
-
-type FieldState = boolean[][];
-
+export type FieldState = boolean[][];
 export const cellGridFillRandom = (
 	rows: number,
 	columns: number,
@@ -69,32 +66,3 @@ export const gameOflife = (
 	};
 	return nextStep(state);
 };
-
-const defaultState: FieldState = cellGridFillRandom(20, 20);
-
-const field = createSlice({
-	name: 'field',
-	initialState: defaultState,
-	reducers: {
-		setCell: (state, action) => {
-			state[action.payload.x][action.payload.y] = !state[
-				action.payload.x
-			][action.payload.y];
-		},
-		clearBoard: () => {
-			const newState = cellGridFillRandom(20, 20, () => false);
-			return newState;
-		},
-		updateBoard: () => {
-			const newState = cellGridFillRandom(20, 20);
-			return newState;
-		},
-		isGame: (state) => {
-			const newState = gameOflife(state, 20, 20);
-			return newState;
-		},
-	},
-});
-
-export const fieldActions = field.actions;
-export const fieldReducers = field.reducer;
