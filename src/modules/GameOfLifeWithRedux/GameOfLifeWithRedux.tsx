@@ -3,7 +3,7 @@ import styled from '@emotion/styled';
 import { GameOfLifeState } from '@/store';
 import { Field } from '@/components/Field/Field';
 import { connect } from 'react-redux';
-import { InterfaceLayout } from '@/modules/Interfaces/Interfaces';
+import { InterfaceLayout } from '@/components/Controls/Interfaces';
 import { actions } from './reducer';
 
 const GameOfLifeProtoWrapper = styled.div`
