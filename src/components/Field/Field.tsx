@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import { Cell } from './Cell/Cell';
-import type { FieldProps } from '../../types/Field';
+import type { FieldProps } from './types';
 import styled from '@emotion/styled';
 
 const NextLine = styled.p`

@@ -2,7 +2,6 @@ import React from 'react';
 import { mount } from 'enzyme';
 import { Field } from './Field';
 import serializer from 'jest-emotion';
-import { jsx } from '@emotion/core';
 import renderer from 'react-test-renderer';
 
 expect.addSnapshotSerializer(serializer);
