@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
-import { CellWrapper } from './Cellstyled';
-import type { CellProps } from '../../../types/Cell';
+import { CellWrapper } from './Styled';
+import type { CellProps } from './types';
 
 export const Cell: FC<CellProps> = React.memo(
 	({ filled, x, y, onClick }) => {

@@ -1,9 +1,7 @@
-/** @jsx jsx */
 import React from 'react';
 import { mount } from 'enzyme';
 import { Cell } from './Cell';
 import serializer from 'jest-emotion';
-import { jsx } from '@emotion/core';
 import renderer from 'react-test-renderer';
 
 expect.addSnapshotSerializer(serializer);
