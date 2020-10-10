@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from '@emotion/styled';
 import { User } from '@/modules/Login/User';
+import { routes } from './routes';
 
 const Nav = styled.ul`
 	display: flex;
@@ -40,18 +41,14 @@ const Nav = styled.ul`
 export const Navigation: React.FC<{}> = () => {
 	return (
 		<Nav>
-			<li>
-				<Link to="/">Home</Link>
-			</li>
-			<li>
-				<Link to="/rules">Rules</Link>
-			</li>
-			<li>
-				<Link to="/game">Game</Link>
-			</li>
-			<li>
-				<Link to="/redux">Gamewithredux</Link>
-			</li>
+			{routes.map((list, id) => {
+				const { route, title } = list;
+				return (
+					<li key={id}>
+						<Link to={route}>{title}</Link>
+					</li>
+				);
+			})}
 			<li>
 				<User />
 			</li>
