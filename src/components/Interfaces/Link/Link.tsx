@@ -34,8 +34,8 @@ export const CustomLink: FC<LinkProps> = ({
 	});
 
 	return (
-		<List css={match && active}>
-			<Link css={customA} to={to}>
+		<List>
+			<Link css={[customA, match && active]} to={to}>
 				{label}
 			</Link>
 		</List>
