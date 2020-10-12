@@ -12,12 +12,6 @@ const Nav = styled.ul`
 	padding-left: 0;
 	margin-bottom: 0;
 	list-style: none;
-	& > li a {
-		color: #007bff;
-		text-decoration: none;
-		display: block;
-		padding: 0.5rem 1rem;
-	}
 	& > li h4 {
 		padding: 0.5rem 1rem;
 		margin: 0;
