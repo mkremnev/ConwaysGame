@@ -20,13 +20,12 @@ export const Navigation: React.FC<{}> = () => {
 			{routes.map((list, id) => {
 				const { route, title } = list;
 				return (
-					<li key={id}>
-						<CustomLink
-							to={route}
-							label={title}
-							activeOnlyWhenExact
-						></CustomLink>
-					</li>
+					<CustomLink
+						key={id}
+						to={route}
+						label={title}
+						activeOnlyWhenExact
+					></CustomLink>
 				);
 			})}
 			<li>
