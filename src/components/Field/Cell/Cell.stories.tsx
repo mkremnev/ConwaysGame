@@ -1,6 +1,6 @@
 import React from 'react';
 import { Cell } from './Cell';
-import type { CellProps } from '../../../types/Cell';
+import type { CellProps } from './types';
 import { Story } from '@storybook/react/types-6-0';
 
 // eslint-disable-next-line no-restricted-syntax

@@ -1,5 +1,6 @@
 import React, { FC, useCallback } from 'react';
 import { Link, useHistory } from 'react-router-dom';
+import { CustomLink } from '@/components/Interfaces/Link/Link';
 import { connect } from 'react-redux';
 import { isEmpty } from 'ramda';
 import { GameOfLifeState } from '@/store';
@@ -12,6 +13,26 @@ const WrapperUser = styled.div`
 	flex-direction: row;
 	justify-content: center;
 	align-items: center;
+`;
+
+const UserHead = styled.h4`
+	padding: 0.5rem 1rem;
+	margin: 0;
+`;
+
+const Button = styled.button`
+	color: #007bff;
+	text-decoration: none;
+	display: block;
+	padding: 0.5rem 1rem;
+	background-color: transparent;
+	border: none;
+	cursor: pointer;
+	outline: none;
+	& :hover {
+		color: #0056b3;
+		text-decoration: underline;
+	}
 `;
 
 const mapStateToProps = ({ login }: GameOfLifeState) => ({
@@ -36,11 +57,11 @@ const UserComponent: FC<Props> = (props) => {
 	const { username } = props;
 
 	return isEmpty(username) ? (
-		<Link to="/login">login</Link>
+		<CustomLink to="/login" label={'Login'} activeOnlyWhenExact />
 	) : (
 		<WrapperUser>
-			<button onClick={logout}>Logout</button>
-			<h4>Hello, {username}!</h4>
+			<Button onClick={logout}>Logout</Button>
+			<UserHead>Hello, {username}!</UserHead>
 		</WrapperUser>
 	);
 };

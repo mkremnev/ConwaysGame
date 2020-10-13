@@ -3,8 +3,8 @@ import {
 	FieldPropsComponent,
 	FieldPropsInterface,
 	FieldState,
-} from '@/types/GameOfProto';
-import { InterfaceLayout } from '@/modules/Interfaces/Interfaces';
+} from '@/modules/Main/types';
+import { InterfaceLayout } from '@/components/Controls/Interfaces';
 import styled from '@emotion/styled';
 
 const GameOfLifeProtoWrapper = styled.div`

@@ -6,7 +6,7 @@ import { Rules } from '@/screens/Rules';
 import { GameOfLife } from '@/screens/GameOfLife';
 import { GameOfLifeWithReduxScreen } from '@/screens/GameOfLifeWithRedux';
 import { NotFound } from '@/screens/NotFound';
-import { Navigation } from '@/components/View/Navigation';
+import { Navigation } from '@/modules/Navbar/Navigation';
 
 export const AppContainer: React.FC<{}> = () => {
 	return (
