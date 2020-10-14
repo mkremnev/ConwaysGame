@@ -39,7 +39,7 @@ describe('Testin interfaces', () => {
 				.toJSON(),
 		).toMatchInlineSnapshot(`
 		<div
-		  className="css-8a9a6o-InterfaceLayoutWrapper emz3rbl0"
+		  className="css-5a4nav-StyledComponent e1ibf0kc0"
 		>
 		  <button
 		    className="css-s63jpt-Btn e1tse95j0"
@@ -60,7 +60,7 @@ describe('Testin interfaces', () => {
 		    Начать
 		  </button>
 		  <input
-		    className="css-899qxt"
+		    className="css-o8dbh9-InputComponent"
 		    max="1000"
 		    min="50"
 		    name="Name"

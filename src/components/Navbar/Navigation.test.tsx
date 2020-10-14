@@ -21,7 +21,7 @@ describe('Testing Navigation', () => {
 				)
 				.toJSON(),
 		).toMatchInlineSnapshot(`
-		.emotion-0 {
+		.emotion-15 {
 		  display: -webkit-box;
 		  display: -webkit-flex;
 		  display: -ms-flexbox;
@@ -41,65 +41,81 @@ describe('Testing Navigation', () => {
 		  list-style: none;
 		}
 
-		.emotion-0 > li a {
+		.emotion-1 {
+		  list-style: none;
+		}
+
+		.emotion-0 {
 		  color: #007bff;
+		  display: inline-block;
+		  padding: 0.5rem 1rem;
 		  -webkit-text-decoration: none;
 		  text-decoration: none;
-		  display: block;
-		  padding: 0.5rem 1rem;
+		  -webkit-text-decoration: underline;
+		  text-decoration: underline;
 		}
 
-		.emotion-0 > li h4 {
-		  padding: 0.5rem 1rem;
-		  margin: 0;
-		}
-
-		.emotion-0 button {
-		  color: #007bff;
-		  -webkit-text-decoration: none;
-		  text-decoration: none;
-		  display: block;
-		  padding: 0.5rem 1rem;
-		  background-color: transparent;
-		  border: none;
-		  cursor: pointer;
-		  outline: none;
-		}
-
-		.emotion-0 > li a:hover,
-		.emotion-0 button:hover {
+		.emotion-0:hover {
 		  color: #0056b3;
+		  -webkit-text-decoration: underline;
+		  text-decoration: underline;
+		}
+
+		.emotion-3 {
+		  color: #007bff;
+		  display: inline-block;
+		  padding: 0.5rem 1rem;
+		  -webkit-text-decoration: none;
+		  text-decoration: none;
+		}
+
+		.emotion-3:hover {
+		  color: #0056b3;
+		  -webkit-text-decoration: underline;
+		  text-decoration: underline;
 		}
 
 		<ul
-		  className="emotion-0 emotion-1"
+		  className="emotion-15 emotion-16"
 		>
-		  <li>
+		  <li
+		    className="emotion-1 emotion-2"
+		  >
 		    <a
+		      className="emotion-0"
 		      href="/"
 		      onClick={[Function]}
 		    >
 		      Home
 		    </a>
 		  </li>
-		  <li>
+		  <li
+		    className="emotion-1 emotion-2"
+		  >
 		    <a
+		      className="emotion-3"
 		      href="/rules"
 		      onClick={[Function]}
 		    >
 		      Rules
 		    </a>
 		  </li>
-		  <li>
+		  <li
+		    className="emotion-1 emotion-2"
+		  >
 		    <a
+		      className="emotion-3"
 		      href="/game"
 		      onClick={[Function]}
 		    >
 		      Game
 		    </a>
 		  </li>
-		  <li>
+		  <li
+		    className="emotion-1 emotion-2"
+		  >
 		    <a
+		      className="emotion-3"
 		      href="/redux"
 		      onClick={[Function]}
 		    >
@@ -107,12 +123,17 @@ describe('Testing Navigation', () => {
 		    </a>
 		  </li>
 		  <li>
-		    <a
-		      href="/login"
-		      onClick={[Function]}
+		    <li
+		      className="emotion-1 emotion-2"
 		    >
-		      login
-		    </a>
+		      <a
+		        className="emotion-3"
+		        href="/login"
+		        onClick={[Function]}
+		      >
+		        Login
+		      </a>
+		    </li>
 		  </li>
 		</ul>
 	`);
