@@ -5,6 +5,7 @@ import { Field } from '@/components/Field/Field';
 import { connect } from 'react-redux';
 import { InterfaceLayout } from '@/components/Controls/Interfaces';
 import { actions } from './reducer';
+import { RadioGroup } from '@/components/Interfaces/RadioGroup/RadioGroup';
 
 const GameOfLifeProtoWrapper = styled.div`
 	display: flex;
@@ -13,6 +14,20 @@ const GameOfLifeProtoWrapper = styled.div`
 	align-items: center;
 	margin-right: 10px;
 `;
+const sizeList = [
+	{
+		title: '10X10',
+		value: '{"rows": "10", "columns": "10"}',
+	},
+	{
+		title: '20X20',
+		value: '{"rows": "20", "columns": "20"}',
+	},
+	{
+		title: '30X30',
+		value: '{"rows": "30", "columns": "30"}',
+	},
+];
 
 function mapStateToProps(state: GameOfLifeState) {
 	const { game, login } = state;
@@ -31,6 +46,7 @@ const mapDispatchToProps = {
 	changeSpeed: actions.changeSpeed,
 	gameRun: actions.gameRun,
 	isGame: actions.isGame,
+	addCell: actions.addCell,
 };
 
 type GameOfLifeWithReduxProps = ReturnType<typeof mapStateToProps> &
@@ -43,8 +59,12 @@ export class GameOfLife extends React.Component<GameOfLifeWithReduxProps, {}> {
 		this.props.setCell({ x, y });
 	};
 
-	speedChange = (ev: React.ChangeEvent) => {
+	speedChange = (ev: React.FormEvent<HTMLInputElement>) => {
 		this.props.changeSpeed((ev.target as HTMLInputElement).value);
+	};
+
+	sizeFieldChange = (ev: React.FormEvent<HTMLInputElement>) => {
+		this.props.addCell(JSON.parse((ev.target as HTMLInputElement).value));
 	};
 
 	componentDidUpdate(prevProps: ReturnType<typeof mapStateToProps>) {
@@ -59,7 +79,7 @@ export class GameOfLife extends React.Component<GameOfLifeWithReduxProps, {}> {
 		if (isRunningGame || gameStarted) {
 			this.timerID = setInterval(() => {
 				this.props.isGame();
-			}, +speed);
+			}, Number(speed));
 		}
 	}
 
@@ -89,6 +109,12 @@ export class GameOfLife extends React.Component<GameOfLifeWithReduxProps, {}> {
 						max: '1000',
 						step: '50',
 					}}
+				/>
+				<RadioGroup
+					options={sizeList}
+					label="Размер поля"
+					onChange={this.sizeFieldChange}
+					checked={true}
 				/>
 			</GameOfLifeProtoWrapper>
 		);
