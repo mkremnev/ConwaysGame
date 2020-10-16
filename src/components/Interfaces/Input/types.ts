@@ -8,5 +8,5 @@ export type inputAttributes = {
 	value?: number | string;
 	border?: string;
 	size?: number;
-	onChange?: () => void;
+	onChange?: (ev: React.FormEvent<HTMLInputElement>) => void;
 };
