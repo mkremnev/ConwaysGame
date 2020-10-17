@@ -1,7 +1,7 @@
 import { reducer, actions } from './reducer';
 import { expectSaga } from 'redux-saga-test-plan';
 import { fieldSaga } from './saga';
-import { cellGridFillRandom, gameOflife } from './helpers';
+import { cellGridFillRandom } from './helpers';
 
 describe('Test saga GameOfLifeWithRedux', () => {
 	const size = { rows: 10, columns: 10 };
@@ -20,17 +20,15 @@ describe('Test saga GameOfLifeWithRedux', () => {
 			.run();
 	});
 
-	it('Should update State on called actions addCell', () => {
-		return expectSaga(fieldSaga)
-			.withReducer(reducer, initialState)
-			.dispatch(actions.addCell(size))
-			.hasFinalState({
-				board: cellGridFillRandom(10, 10, () => false),
-				gameStatus: false,
-				value: '300',
-				rows: 10,
-				columns: 10,
-			})
-			.run();
+	it('Should update State on called actions addCell', async () => {
+		const equalSaga = expectSaga(fieldSaga).withReducer(
+			reducer,
+			initialState,
+		);
+
+		const result = await equalSaga.dispatch(actions.addCell(size)).run();
+
+		expect(result.storeState.rows).toBe(10);
+		expect(result.storeState.columns).toBe(10);
 	});
 });
