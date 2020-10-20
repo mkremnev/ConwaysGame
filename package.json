@@ -13,7 +13,10 @@
 		"loki:update": "npm run build-storybook && npx loki update --requireReference --reactUri file:./storybook-static",
 		"loki:approve": "npx loki approve",
 		"test:loki": "npm run build-storybook && npx loki --requireReference --reactUri file:./storybook-static",
-		"heroku-prebuild": "npm install --dev"
+		"heroku-prebuild": "npm install --dev",
+		"next:dev": "next",
+		"next:build": "next",
+		"next:start": "next"
 	},
 	"keywords": [
 		"calculation",
@@ -91,6 +94,8 @@
 		"jest": "^25.5.4",
 		"jest-emotion": "^10.0.32",
 		"loki": "^0.24.0",
+		"next": "^9.5.5",
+		"next-redux-wrapper": "^6.0.2",
 		"postcss-loader": "^3.0.0",
 		"prettier": "^2.0.5",
 		"react-test-renderer": "^16.13.1",
