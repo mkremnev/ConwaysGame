@@ -15,8 +15,8 @@
 		"test:loki": "npm run build-storybook && npx loki --requireReference --reactUri file:./storybook-static",
 		"heroku-prebuild": "npm install --dev",
 		"next:dev": "next",
-		"next:build": "next",
-		"next:start": "next"
+		"next:build": "next build",
+		"next:start": "next start"
 	},
 	"keywords": [
 		"calculation",
