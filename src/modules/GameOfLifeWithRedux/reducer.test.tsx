@@ -6,12 +6,16 @@ describe('Reducer and actions Game', () => {
 		board: cellGridFillRandom(20, 20),
 		gameStatus: false,
 		value: '500',
+		rows: 20,
+		columns: 20,
 	};
 
 	const initialStateSetCell = {
 		board: cellGridFillRandom(3, 3, () => false),
 		gameStatus: false,
 		value: '500',
+		rows: 3,
+		columns: 3,
 	};
 
 	const coordinates = { x: 0, y: 0 };
@@ -100,6 +104,9 @@ describe('Reducer and actions Game', () => {
 			],
 			gameStatus: false,
 			value: '500',
+
+			rows: 3,
+			columns: 3,
 		});
 	});
 
@@ -108,6 +115,8 @@ describe('Reducer and actions Game', () => {
 			board: cellGridFillRandom(20, 20, () => false),
 			gameStatus: false,
 			value: '500',
+			rows: 20,
+			columns: 20,
 		});
 	});
 
@@ -116,6 +125,8 @@ describe('Reducer and actions Game', () => {
 			board: cellGridFillRandom(20, 20),
 			gameStatus: false,
 			value: '500',
+			rows: 20,
+			columns: 20,
 		});
 	});
 
@@ -124,6 +135,8 @@ describe('Reducer and actions Game', () => {
 			board: gameOflife(initialState.board, 20, 20),
 			gameStatus: false,
 			value: '500',
+			rows: 20,
+			columns: 20,
 		});
 	});
 
@@ -132,6 +145,19 @@ describe('Reducer and actions Game', () => {
 			board: initialState.board,
 			gameStatus: false,
 			value: '300',
+			rows: 20,
+			columns: 20,
+		});
+	});
+	it('Should return the correct value from reducer addCell', () => {
+		expect(
+			reducer(initialState, actions.addCell({ rows: 35, columns: 35 })),
+		).toEqual({
+			board: initialState.board,
+			gameStatus: false,
+			value: '500',
+			rows: 35,
+			columns: 35,
 		});
 	});
 });

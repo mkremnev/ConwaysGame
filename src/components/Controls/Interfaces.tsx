@@ -1,20 +1,10 @@
-import React from 'react';
-import { Button, ButtonType } from '@/components/Interfaces/Button/Button';
-import {
-	Input,
-	InputType,
-	styledInput,
-} from '@/components/Interfaces/Input/Input';
+import React, { FC } from 'react';
+import { Button } from '@/components/Interfaces/Button/Button';
+import { Input } from '@/components/Interfaces/Input';
+import { ListButton } from './types';
 import styled from '@emotion/styled';
 
-export type ListButton = {
-	button1: ButtonType;
-	button2: ButtonType;
-	button3: ButtonType;
-	input?: InputType & styledInput;
-};
-
-const InterfaceLayoutWrapper = styled.div`
+const StyledComponent = styled.div`
 	display: flex;
 	flex-direction: row;
 	justify-content: center;
@@ -22,31 +12,21 @@ const InterfaceLayoutWrapper = styled.div`
 	margin-top: 10px;
 `;
 
-export class InterfaceLayout extends React.Component<ListButton> {
-	shouldComponentUpdate(nextProps: ListButton) {
-		return (
-			this.props.button1.text !== nextProps.button1.text ||
-			this.props.input.value !== nextProps.input.value
-		);
-	}
+const renderCondition = (prevProps: ListButton, nextProps: ListButton) => {
+	return (
+		prevProps.button1.text === nextProps.button1.text &&
+		prevProps.input!.value === nextProps.input!.value
+	);
+};
 
-	render() {
-		return (
-			<InterfaceLayoutWrapper>
-				<Button
-					text={this.props.button1.text}
-					onClick={this.props.button1.onClick}
-				/>
-				<Button
-					text={this.props.button2.text}
-					onClick={this.props.button2.onClick}
-				/>
-				<Button
-					text={this.props.button3.text}
-					onClick={this.props.button3.onClick}
-				/>
-				<Input {...this.props.input} />
-			</InterfaceLayoutWrapper>
-		);
-	}
-}
+const Layout: FC<ListButton> = (props) => {
+	return (
+		<StyledComponent>
+			<Button text={props.button1.text} onClick={props.button1.onClick} />
+			<Button text={props.button2.text} onClick={props.button2.onClick} />
+			<Button text={props.button3.text} onClick={props.button3.onClick} />
+			<Input {...props.input} />
+		</StyledComponent>
+	);
+};
+export const InterfaceLayout = React.memo(Layout, renderCondition);

@@ -1,5 +1,6 @@
 import React from 'react';
-import { Input, InputType, styledInput } from './Input';
+import { Input } from './Input';
+import { inputAttributes } from './types';
 import { Story } from '@storybook/react/types-6-0';
 import { action } from '@storybook/addon-actions';
 
@@ -10,9 +11,7 @@ export default {
 	parameters: { actions: { argTypesRegex: '^on.*' } },
 };
 
-export const InputRange: Story<InputType & styledInput> = (
-	args: InputType & styledInput,
-) => (
+export const InputRange: Story<inputAttributes> = (args: inputAttributes) => (
 	<Input
 		type={args.type}
 		name={args.name}
@@ -29,9 +28,7 @@ export const InputRange: Story<InputType & styledInput> = (
 	/>
 );
 
-export const InputText: Story<InputType & styledInput> = (
-	args: InputType & styledInput,
-) => (
+export const InputText: Story<inputAttributes> = (args: inputAttributes) => (
 	<>
 		<label htmlFor={args.name}>{args.name}</label>
 		<Input

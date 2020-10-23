@@ -1,9 +1,11 @@
 import { configureStore, getDefaultMiddleware } from '@reduxjs/toolkit';
 import createSagaMiddleware from 'redux-saga';
 import { loginSaga } from '@/modules/Login/saga';
+import { fieldSaga } from '@/modules/GameOfLifeWithRedux/saga';
 import { combineReducers } from 'redux';
 import { LoginSlice } from '@/modules/Login/reducer';
 import { fieldSlice } from '@/modules/GameOfLifeWithRedux/reducer';
+import { fork } from 'redux-saga/effects';
 
 export const reducer = combineReducers({
 	game: fieldSlice.reducer,
@@ -13,6 +15,11 @@ export const reducer = combineReducers({
 export type GameOfLifeState = ReturnType<typeof reducer>;
 
 const SagaMiddleware = createSagaMiddleware();
+
+function* rootSaga() {
+	yield fork(loginSaga);
+	yield fork(fieldSaga);
+}
 
 export const store = configureStore({
 	reducer,
@@ -30,4 +37,4 @@ export const store = configureStore({
 		SagaMiddleware,
 	],
 });
-SagaMiddleware.run(loginSaga);
+SagaMiddleware.run(rootSaga);

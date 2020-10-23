@@ -17,6 +17,8 @@ describe('GameOfLifeWithRedux with mocked store', () => {
 				board: cellGridFillRandom(20, 20, () => false),
 				gameStatus: false,
 				value: '500',
+				rows: 20,
+				columns: 20,
 			},
 		});
 	});
@@ -51,6 +53,8 @@ describe('ReduxScreen with real store', () => {
 				board: cellGridFillRandom(20, 20, () => false),
 				gameStatus: false,
 				value: '500',
+				rows: 20,
+				columns: 20,
 			},
 		});
 		jest.spyOn(store, 'dispatch');
@@ -512,7 +516,9 @@ describe('ReduxScreen with real store', () => {
 		        false,
 		      ],
 		    ],
+		    "columns": 20,
 		    "gameStatus": false,
+		    "rows": 20,
 		    "value": "500",
 		  },
 		  "login": Object {
@@ -1018,7 +1024,9 @@ describe('ReduxScreen with real store', () => {
 		        false,
 		      ],
 		    ],
+		    "columns": 20,
 		    "gameStatus": false,
+		    "rows": 20,
 		    "value": "500",
 		  },
 		  "login": Object {
@@ -1045,7 +1053,7 @@ describe('ReduxScreen with real store', () => {
 			</Provider>,
 		);
 
-		(wrapper.find('input').props() as any).onChange({
+		(wrapper.find('input').at(1).props() as any).onChange({
 			target: { value: 250 },
 		});
 		expect(store.dispatch as jest.Mock).toHaveBeenCalledTimes(1);
@@ -1054,7 +1062,7 @@ describe('ReduxScreen with real store', () => {
 		  Array [
 		    Object {
 		      "payload": 250,
-		      "type": "field/changeSpeed",
+		      "type": "field/addCell",
 		    },
 		  ],
 		]
