@@ -16,12 +16,12 @@ test('Cell renders status allive correctly', () => {
 		.emotion-0 {
 		  background: #fff;
 		  border: 1px solid #999;
-		  font-size: 34px;
+		  font-size: 25px;
 		  font-weight: bold;
-		  line-height: 34px;
-		  height: 34px;
+		  line-height: 25px;
+		  height: 25px;
 		  text-align: center;
-		  width: 34px;
+		  width: 25px;
 		  display: -webkit-inline-box;
 		  display: -webkit-inline-flex;
 		  display: -ms-inline-flexbox;
@@ -52,12 +52,12 @@ test('Cell renders status died correctly', () => {
 		.emotion-0 {
 		  background: #fff;
 		  border: 1px solid #999;
-		  font-size: 34px;
+		  font-size: 25px;
 		  font-weight: bold;
-		  line-height: 34px;
-		  height: 34px;
+		  line-height: 25px;
+		  height: 25px;
 		  text-align: center;
-		  width: 34px;
+		  width: 25px;
 		  display: -webkit-inline-box;
 		  display: -webkit-inline-flex;
 		  display: -ms-inline-flexbox;

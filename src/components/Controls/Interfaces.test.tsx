@@ -26,7 +26,7 @@ describe('Testin interfaces', () => {
 							type: 'range',
 							name: 'Name',
 							onChange: (
-								e: React.ChangeEvent<HTMLInputElement>,
+								e: React.FormEvent<HTMLInputElement>,
 							) => {
 								e.preventDefault();
 							},
