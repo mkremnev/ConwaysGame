@@ -169,11 +169,11 @@ export class GameOfLifeProto extends React.Component<
 		});
 	};
 
-	speedChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+	speedChange = (e: React.FormEvent<HTMLInputElement>) => {
 		e.preventDefault();
 
 		this.setState({
-			speedValue: Number(e.target.value),
+			speedValue: Number((e.target as HTMLInputElement).value),
 		});
 	};
 
