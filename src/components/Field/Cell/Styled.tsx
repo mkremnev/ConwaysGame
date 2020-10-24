@@ -1,15 +1,16 @@
 import styled from '@emotion/styled';
 import { css } from '@emotion/core';
+import { StyledProps } from './types';
 
 const commonCell = css`
 	background: #fff;
 	border: 1px solid #999;
-	font-size: 34px;
+	font-size: 25px;
 	font-weight: bold;
-	line-height: 34px;
-	height: 34px;
+	line-height: 25px;
+	height: 25px;
 	text-align: center;
-	width: 34px;
+	width: 25px;
 	display: inline-flex;
 	outline: none;
 	margin-right: -1px;
