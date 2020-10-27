@@ -12,3 +12,7 @@ export default {
 export const GameOfLifePrototip = () => (
 	<GameOfLifeProto columns={20} rows={20} fieldComponent={Field} />
 );
+
+GameOfLifePrototip.story = {
+	parameters: { loki: { skip: true } },
+};
