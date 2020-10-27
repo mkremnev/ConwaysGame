@@ -1,7 +1,7 @@
 import { reducer, actions } from './reducer';
 import { cellGridFillRandom, gameOflife } from './helpers';
 
-describe('Reducer and actions Game', () => {
+describe('Testing GameOfLifeWithRedux redusers and actions', () => {
 	const initialState = {
 		board: cellGridFillRandom(20, 20),
 		gameStatus: false,
