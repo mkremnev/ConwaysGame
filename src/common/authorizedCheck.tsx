@@ -50,3 +50,5 @@ export const authorizedCheck = <Props extends object>(
 
 	return <Component {...props} />;
 };
+
+authorizedCheck.displayName = 'authorizedCheck';
