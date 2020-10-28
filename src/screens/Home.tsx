@@ -1,8 +1,8 @@
 import React from 'react';
-import { authorizedCheck } from '@/common/authorizedCheck';
+import { AuthorizedCheck } from '@/common/AuthorizedCheck';
 
 export const HomeView: React.FC<{}> = () => {
 	return <div>Home</div>;
 };
 
-export const Home = authorizedCheck(HomeView);
+export const Home = AuthorizedCheck(HomeView);
