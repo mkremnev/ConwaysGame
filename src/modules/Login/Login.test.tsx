@@ -3,7 +3,7 @@ import { mount } from 'enzyme';
 import { LoginComponent } from './Login';
 import { LoginSlice } from './reducer';
 
-describe('Testing component Login', () => {
+describe('Testing Login', () => {
 	it('calls submit component with username', async () => {
 		jest.spyOn(LoginSlice.actions, 'login');
 		const username = 'User';
