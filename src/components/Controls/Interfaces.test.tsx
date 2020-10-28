@@ -3,7 +3,7 @@ import { mount } from 'enzyme';
 import { InterfaceLayout } from './Interfaces';
 import renderer from 'react-test-renderer';
 
-describe('Testin interfaces', () => {
+describe('Testing component interfaces', () => {
 	const fn = jest.fn();
 	it('Render correctly', () => {
 		expect(
@@ -26,7 +26,7 @@ describe('Testin interfaces', () => {
 							type: 'range',
 							name: 'Name',
 							onChange: (
-								e: React.ChangeEvent<HTMLInputElement>,
+								e: React.FormEvent<HTMLInputElement>,
 							) => {
 								e.preventDefault();
 							},
@@ -73,7 +73,7 @@ describe('Testin interfaces', () => {
 	`);
 	});
 
-	it('Calls button click', () => {
+	it('Should trigger a click on click', () => {
 		const wrapper = mount(
 			<InterfaceLayout
 				button1={{
@@ -103,7 +103,7 @@ describe('Testin interfaces', () => {
 		expect(fn).toHaveBeenCalled();
 	});
 
-	it('ChangeEvent input', () => {
+	it('Should generated ChangeEvent on input', () => {
 		const wrapper = mount(
 			<InterfaceLayout
 				button1={{

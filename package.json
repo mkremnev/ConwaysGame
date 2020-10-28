@@ -13,7 +13,10 @@
 		"loki:update": "npm run build-storybook && npx loki update --requireReference --reactUri file:./storybook-static",
 		"loki:approve": "npx loki approve",
 		"test:loki": "npm run build-storybook && npx loki --requireReference --reactUri file:./storybook-static",
-		"heroku-prebuild": "npm install --dev"
+		"ts:check": "npx tsc -p tsconfig.json --noEmit",
+		"check": "npm run lint && npm run ts:check && npm test && npm run test:loki",
+		"heroku-prebuild": "npm install --dev",
+		"stryker": "npx stryker run"
 	},
 	"keywords": [
 		"calculation",

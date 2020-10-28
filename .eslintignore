@@ -1,1 +1,8 @@
 *.css
+.history
+.vscode
+node_modules
+storybook-static
+dist
+presa
+reports

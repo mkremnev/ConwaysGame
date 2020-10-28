@@ -5,23 +5,23 @@ import serializer from 'jest-emotion';
 import renderer from 'react-test-renderer';
 
 expect.addSnapshotSerializer(serializer);
-
-test('Cell renders status allive correctly', () => {
-	const onClick = jest.fn();
-	expect(
-		renderer
-			.create(<Cell filled={true} x={1} y={2} onClick={onClick} />)
-			.toJSON(),
-	).toMatchInlineSnapshot(`
+describe('Testing Cell', () => {
+	test('Cell renders status allive correctly', () => {
+		const onClick = jest.fn();
+		expect(
+			renderer
+				.create(<Cell filled={true} x={1} y={2} onClick={onClick} />)
+				.toJSON(),
+		).toMatchInlineSnapshot(`
 		.emotion-0 {
 		  background: #fff;
 		  border: 1px solid #999;
-		  font-size: 34px;
+		  font-size: 25px;
 		  font-weight: bold;
-		  line-height: 34px;
-		  height: 34px;
+		  line-height: 25px;
+		  height: 25px;
 		  text-align: center;
-		  width: 34px;
+		  width: 25px;
 		  display: -webkit-inline-box;
 		  display: -webkit-inline-flex;
 		  display: -ms-inline-flexbox;
@@ -40,24 +40,24 @@ test('Cell renders status allive correctly', () => {
 		  onClick={[Function]}
 		/>
 	`);
-});
+	});
 
-test('Cell renders status died correctly', () => {
-	const onClick = jest.fn();
-	expect(
-		renderer
-			.create(<Cell filled={false} x={1} y={2} onClick={onClick} />)
-			.toJSON(),
-	).toMatchInlineSnapshot(`
+	test('Cell renders status died correctly', () => {
+		const onClick = jest.fn();
+		expect(
+			renderer
+				.create(<Cell filled={false} x={1} y={2} onClick={onClick} />)
+				.toJSON(),
+		).toMatchInlineSnapshot(`
 		.emotion-0 {
 		  background: #fff;
 		  border: 1px solid #999;
-		  font-size: 34px;
+		  font-size: 25px;
 		  font-weight: bold;
-		  line-height: 34px;
-		  height: 34px;
+		  line-height: 25px;
+		  height: 25px;
 		  text-align: center;
-		  width: 34px;
+		  width: 25px;
 		  display: -webkit-inline-box;
 		  display: -webkit-inline-flex;
 		  display: -ms-inline-flexbox;
@@ -75,26 +75,49 @@ test('Cell renders status died correctly', () => {
 		  onClick={[Function]}
 		/>
 	`);
-});
+	});
 
-test('Cell simulate clicked correctly', () => {
-	const onClick = jest.fn();
+	test('Clicking on a living cell is correct', () => {
+		const onClick = jest.fn();
 
-	const wrapper = mount(
-		<Cell filled={false} x={1} y={3} onClick={onClick} />,
-	);
-	wrapper.find('button').simulate('click');
-	expect(onClick).toHaveBeenCalled();
-});
+		const wrapper = mount(
+			<Cell filled={true} x={1} y={3} onClick={onClick} />,
+		);
+		wrapper.find('button').simulate('click');
+		expect(onClick).toHaveBeenCalled();
+	});
 
-test('Cell simulate clicked with x and y correctly', () => {
-	const onClick = jest.fn();
-	const x = 12,
-		y = 10;
+	test('Clicking on a non-living cell is correct', () => {
+		const onClick = jest.fn();
 
-	const wrapper = mount(
-		<Cell filled={false} x={x} y={y} onClick={onClick} />,
-	);
-	wrapper.find('button').simulate('click');
-	expect(onClick).toHaveBeenCalledWith(x, y);
+		const wrapper = mount(
+			<Cell filled={false} x={1} y={3} onClick={onClick} />,
+		);
+		wrapper.find('button').simulate('click');
+		expect(onClick).toHaveBeenCalled();
+	});
+
+	test('Simulation of clicking on a live cell with x and y correct', () => {
+		const onClick = jest.fn();
+		const x = 12,
+			y = 10;
+
+		const wrapper = mount(
+			<Cell filled={true} x={x} y={y} onClick={onClick} />,
+		);
+		wrapper.find('button').simulate('click');
+		expect(onClick).toHaveBeenCalledWith(x, y);
+	});
+
+	test('Simulation of clicking on a non-live cell with x and y correct', () => {
+		const onClick = jest.fn();
+		const x = 12,
+			y = 10;
+
+		const wrapper = mount(
+			<Cell filled={false} x={x} y={y} onClick={onClick} />,
+		);
+		wrapper.find('button').simulate('click');
+		expect(onClick).toHaveBeenCalledWith(x, y);
+	});
 });

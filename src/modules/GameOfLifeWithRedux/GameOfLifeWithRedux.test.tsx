@@ -7,30 +7,31 @@ import { createStore } from 'redux';
 import configureStore from 'redux-mock-store';
 import { cellGridFillRandom } from './helpers';
 
-describe('GameOfLifeWithRedux with mocked store', () => {
-	const mockStore = configureStore([]);
-	let store: any;
+describe('Testing component GameOfLifeWithRedux', () => {
+	describe('GameOfLifeWithRedux with mocked store', () => {
+		const mockStore = configureStore([]);
+		let store: any;
 
-	beforeEach(() => {
-		store = mockStore({
-			game: {
-				board: cellGridFillRandom(20, 20, () => false),
-				gameStatus: false,
-				value: '500',
-				rows: 20,
-				columns: 20,
-			},
+		beforeEach(() => {
+			store = mockStore({
+				game: {
+					board: cellGridFillRandom(20, 20, () => false),
+					gameStatus: false,
+					value: '500',
+					rows: 20,
+					columns: 20,
+				},
+			});
 		});
-	});
 
-	it('Should generate action on click', () => {
-		const wrapper = mount(
-			<Provider store={store}>
-				<GameOfLifeWithRedux />
-			</Provider>,
-		);
-		(wrapper.find('Field').props() as any).onClick(100, 999);
-		expect(store.getActions()).toMatchInlineSnapshot(`
+		it('Should generate actions setCell on click', () => {
+			const wrapper = mount(
+				<Provider store={store}>
+					<GameOfLifeWithRedux />
+				</Provider>,
+			);
+			(wrapper.find('Field').props() as any).onClick(100, 999);
+			expect(store.getActions()).toMatchInlineSnapshot(`
 		Array [
 		  Object {
 		    "payload": Object {
@@ -41,37 +42,37 @@ describe('GameOfLifeWithRedux with mocked store', () => {
 		  },
 		]
 	`);
-	});
-});
-
-describe('ReduxScreen with real store', () => {
-	let store: any;
-
-	beforeEach(() => {
-		store = createStore(reducer, {
-			game: {
-				board: cellGridFillRandom(20, 20, () => false),
-				gameStatus: false,
-				value: '500',
-				rows: 20,
-				columns: 20,
-			},
 		});
-		jest.spyOn(store, 'dispatch');
 	});
 
-	it('should generate action on click', () => {
-		const wrapper = mount(
-			<Provider store={store}>
-				<GameOfLifeWithRedux />
-			</Provider>,
-		);
+	describe('GameOfLifeWithRedux with real store', () => {
+		let store: any;
 
-		(wrapper.find('Field').props() as any).onClick(0, 1);
-		wrapper.update();
-		(wrapper.find('Field').props() as any).onClick(1, 1);
+		beforeEach(() => {
+			store = createStore(reducer, {
+				game: {
+					board: cellGridFillRandom(20, 20, () => false),
+					gameStatus: false,
+					value: '500',
+					rows: 20,
+					columns: 20,
+				},
+			});
+			jest.spyOn(store, 'dispatch');
+		});
 
-		expect(store.getState()).toMatchInlineSnapshot(`
+		it('should generate action setCell on click', () => {
+			const wrapper = mount(
+				<Provider store={store}>
+					<GameOfLifeWithRedux />
+				</Provider>,
+			);
+
+			(wrapper.find('Field').props() as any).onClick(0, 1);
+			wrapper.update();
+			(wrapper.find('Field').props() as any).onClick(1, 1);
+
+			expect(store.getState()).toMatchInlineSnapshot(`
 		Object {
 		  "game": Object {
 		    "board": Array [
@@ -527,7 +528,8 @@ describe('ReduxScreen with real store', () => {
 		  },
 		}
 	`);
-		expect((store.dispatch as jest.Mock).mock.calls).toMatchInlineSnapshot(`
+			expect((store.dispatch as jest.Mock).mock.calls)
+				.toMatchInlineSnapshot(`
 		Array [
 		  Array [
 		    Object {
@@ -549,17 +551,20 @@ describe('ReduxScreen with real store', () => {
 		  ],
 		]
 	`);
-	});
+		});
 
-	test('Expected actions updateBoard', () => {
-		const wrapper = mount(
-			<Provider store={store}>
-				<GameOfLifeWithRedux />
-			</Provider>,
-		);
+		test('Expected actions updateBoard', () => {
+			const wrapper = mount(
+				<Provider store={store}>
+					<GameOfLifeWithRedux />
+				</Provider>,
+			);
 
-		(wrapper.find('button[children="Обновить"]').props() as any).onClick();
-		expect((store.dispatch as jest.Mock).mock.calls).toMatchInlineSnapshot(`
+			(wrapper
+				.find('button[children="Обновить"]')
+				.props() as any).onClick();
+			expect((store.dispatch as jest.Mock).mock.calls)
+				.toMatchInlineSnapshot(`
 		Array [
 		  Array [
 		    Object {
@@ -569,17 +574,19 @@ describe('ReduxScreen with real store', () => {
 		  ],
 		]
 	`);
-	});
+		});
 
-	test('Expected actions clearBoard', () => {
-		const wrapper = mount(
-			<Provider store={store}>
-				<GameOfLifeWithRedux />
-			</Provider>,
-		);
+		test('Expected actions clearBoard', () => {
+			const wrapper = mount(
+				<Provider store={store}>
+					<GameOfLifeWithRedux />
+				</Provider>,
+			);
 
-		(wrapper.find('button[children="Очистить"]').props() as any).onClick();
-		expect(store.getState()).toMatchInlineSnapshot(`
+			(wrapper
+				.find('button[children="Очистить"]')
+				.props() as any).onClick();
+			expect(store.getState()).toMatchInlineSnapshot(`
 		Object {
 		  "game": Object {
 		    "board": Array [
@@ -1035,7 +1042,8 @@ describe('ReduxScreen with real store', () => {
 		  },
 		}
 	`);
-		expect((store.dispatch as jest.Mock).mock.calls).toMatchInlineSnapshot(`
+			expect((store.dispatch as jest.Mock).mock.calls)
+				.toMatchInlineSnapshot(`
 		Array [
 		  Array [
 		    Object {
@@ -1045,19 +1053,20 @@ describe('ReduxScreen with real store', () => {
 		  ],
 		]
 	`);
-	});
-	test('Expected actions changeSpeed', () => {
-		const wrapper = mount(
-			<Provider store={store}>
-				<GameOfLifeWithRedux />
-			</Provider>,
-		);
-
-		(wrapper.find('input').at(1).props() as any).onChange({
-			target: { value: 250 },
 		});
-		expect(store.dispatch as jest.Mock).toHaveBeenCalledTimes(1);
-		expect((store.dispatch as jest.Mock).mock.calls).toMatchInlineSnapshot(`
+		test('Expected actions changeSpeed', () => {
+			const wrapper = mount(
+				<Provider store={store}>
+					<GameOfLifeWithRedux />
+				</Provider>,
+			);
+
+			(wrapper.find('input').at(1).props() as any).onChange({
+				target: { value: 250 },
+			});
+			expect(store.dispatch as jest.Mock).toHaveBeenCalledTimes(1);
+			expect((store.dispatch as jest.Mock).mock.calls)
+				.toMatchInlineSnapshot(`
 		Array [
 		  Array [
 		    Object {
@@ -1067,5 +1076,6 @@ describe('ReduxScreen with real store', () => {
 		  ],
 		]
 	`);
+		});
 	});
 });

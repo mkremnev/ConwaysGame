@@ -1,5 +1,6 @@
 import React from 'react';
-import { InterfaceLayout, ListButton } from './Interfaces';
+import { InterfaceLayout } from './Interfaces';
+import { ListButton } from './types';
 import { Story } from '@storybook/react/types-6-0';
 import { action } from '@storybook/addon-actions';
 
@@ -29,9 +30,9 @@ Layout.args = {
 	input: {
 		type: 'range',
 		name: 'Name',
-		onChange: (e: React.ChangeEvent<HTMLInputElement>) => {
-			e.preventDefault();
-			action('Input change')(e.target.value);
+		onChange: (ev: React.FormEvent<HTMLInputElement>) => {
+			ev.preventDefault();
+			action('Input change')((ev.target as HTMLInputElement).value);
 		},
 		min: '50',
 		max: '1000',

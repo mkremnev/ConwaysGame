@@ -3,7 +3,7 @@ import { expectSaga } from 'redux-saga-test-plan';
 import { fieldSaga } from './saga';
 import { cellGridFillRandom } from './helpers';
 
-describe('Test saga GameOfLifeWithRedux', () => {
+describe('Testing GameOfLifeWithRedux saga', () => {
 	const size = { rows: 10, columns: 10 };
 	const initialState = {
 		board: cellGridFillRandom(20, 20, () => false),
