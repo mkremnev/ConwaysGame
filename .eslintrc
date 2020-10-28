@@ -13,6 +13,7 @@
 	"rules": {
 		"semi": "error",
 		"@typescript-eslint/no-non-null-assertion": "off",
+		"react/display-name": "off",
 		"prettier/prettier": [
 			"error",
 			{
