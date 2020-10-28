@@ -21,7 +21,7 @@ enum CheckState {
 	failed,
 }
 
-export const authorizedCheck = <Props extends object>(
+export const AuthorizedCheck = <Props extends object>(
 	Component: React.ComponentType<Props>,
 	redirectPath = '/login',
 ) => (props: Props) => {
@@ -51,4 +51,4 @@ export const authorizedCheck = <Props extends object>(
 	return <Component {...props} />;
 };
 
-authorizedCheck.displayName = 'authorizedCheck';
+AuthorizedCheck.displayName = 'AuthorizedCheck';
