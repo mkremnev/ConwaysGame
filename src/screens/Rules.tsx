@@ -1,8 +1,8 @@
 import React from 'react';
-import { authorizedCheck } from '@/common/authorizedCheck';
+import { AuthorizedCheck } from '@/common/AuthorizedCheck';
 
 export const RulesView: React.FC<{}> = () => {
 	return <div>Rules</div>;
 };
 
-export const Rules = authorizedCheck(RulesView);
+export const Rules = AuthorizedCheck(RulesView);
