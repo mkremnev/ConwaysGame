@@ -1,7 +1,7 @@
 import React from 'react';
-import { authorizedCheck } from '@/common/authorizedCheck';
+import { AuthorizedCheck } from '@/common/AuthorizedCheck';
 import { GameOfLifeWithRedux } from '@/modules/GameOfLifeWithRedux/GameOfLifeWithRedux';
 
-export const GameOfLifeWithReduxScreen: React.FC<{}> = authorizedCheck(() => {
+export const GameOfLifeWithReduxScreen: React.FC<{}> = AuthorizedCheck(() => {
 	return <GameOfLifeWithRedux />;
 });
