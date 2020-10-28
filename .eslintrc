@@ -12,7 +12,6 @@
 	},
 	"rules": {
 		"semi": "error",
-		"react/display-name": "off",
 		"@typescript-eslint/no-non-null-assertion": "off",
 		"prettier/prettier": [
 			"error",
