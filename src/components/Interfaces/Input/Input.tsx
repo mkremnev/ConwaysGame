@@ -1,7 +1,19 @@
 /** @jsx jsx */
 import React, { useState } from 'react';
 import { jsx, css } from '@emotion/core';
-import { inputAttributes } from './types';
+
+export type inputAttributes = {
+	type: string;
+	name: string;
+	placeholder?: string;
+	min?: string;
+	max?: string;
+	step?: string;
+	value?: number | string;
+	border?: string;
+	size?: number;
+	onChange?: (ev: React.FormEvent<HTMLInputElement>) => void;
+};
 
 const styleComponent = (style: Pick<inputAttributes, 'border' | 'size'>) => css`
 	border: ${style.border || '1px solid grey'};

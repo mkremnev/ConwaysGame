@@ -1,6 +1,6 @@
 import React from 'react';
 import { Field } from './Field';
-import type { FieldProps } from './types';
+import type { FieldProps } from './Field';
 import { Story } from '@storybook/react/types-6-0';
 
 const arrayDiedCell = () =>

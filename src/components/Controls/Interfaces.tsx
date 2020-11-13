@@ -1,8 +1,16 @@
 import React, { FC } from 'react';
 import { Button } from '@/components/Interfaces/Button/Button';
 import { Input } from '@/components/Interfaces/Input';
-import { ListButton } from './types';
 import styled from '@emotion/styled';
+import { inputAttributes } from '@/components/Interfaces/Input';
+import { ButtonType } from '@/components/Interfaces/Button/Button';
+
+export type ListButton = {
+	button1: ButtonType;
+	button2: ButtonType;
+	button3: ButtonType;
+	input?: inputAttributes;
+};
 
 const StyledComponent = styled.div`
 	display: flex;

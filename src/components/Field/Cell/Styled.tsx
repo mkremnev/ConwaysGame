@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 import { css } from '@emotion/core';
-import { StyledProps } from './types';
+import { StyledProps } from './Cell';
 
 const commonCell = css`
 	background: #fff;
