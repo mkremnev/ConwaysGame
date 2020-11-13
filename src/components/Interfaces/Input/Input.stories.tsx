@@ -6,7 +6,7 @@ import { action } from '@storybook/addon-actions';
 
 // eslint-disable-next-line no-restricted-syntax
 export default {
-	title: 'Lesson 9 / Interfaces / Input',
+	title: 'Component / Input',
 	component: Input,
 	parameters: { actions: { argTypesRegex: '^on.*' } },
 };
