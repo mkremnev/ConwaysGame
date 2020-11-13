@@ -40,12 +40,19 @@ module.exports = {
 					{ loader: 'css-loader', options: { modules: true } },
 				],
 			},
+			{
+				test: /\.(jpg|png|svg)$/,
+				use: {
+					loader: 'url-loader',
+					options: { name: './src/assets/[name].[ext]' },
+				},
+			},
 		],
 	},
 	devServer: {
 		historyApiFallback: true,
 		inline: true,
-		contentBase: './dist',
+		contentBase: ['./dist', path.join(__dirname, './src/assets')],
 		port: 5000,
 	},
 	plugins: [
