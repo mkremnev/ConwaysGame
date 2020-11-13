@@ -7,7 +7,7 @@ import { BrowserRouter as Router } from 'react-router-dom';
 
 // eslint-disable-next-line no-restricted-syntax
 export default {
-	title: 'Component / Interfaces / CustomLink',
+	title: 'Component / CustomLink',
 	component: CustomLink,
 	parameters: { actions: { argTypesRegex: '^on.*' } },
 };

@@ -5,7 +5,7 @@ import { Story } from '@storybook/react/types-6-0';
 
 // eslint-disable-next-line no-restricted-syntax
 export default {
-	title: 'Lesson 9 / Board / Cell',
+	title: 'Component /  Board / Cell',
 	component: Cell,
 	argTypes: {
 		filled: {

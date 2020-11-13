@@ -6,7 +6,7 @@ import { action } from '@storybook/addon-actions';
 
 // eslint-disable-next-line no-restricted-syntax
 export default {
-	title: 'Lesson 9 / Interfaces / InterfaceLayout',
+	title: 'Component / InterfaceLayout',
 	component: InterfaceLayout,
 };
 
