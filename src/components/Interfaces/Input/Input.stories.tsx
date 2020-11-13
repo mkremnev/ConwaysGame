@@ -1,6 +1,6 @@
 import React from 'react';
 import { Input } from './Input';
-import { inputAttributes } from './types';
+import { inputAttributes } from './Input';
 import { Story } from '@storybook/react/types-6-0';
 import { action } from '@storybook/addon-actions';
 

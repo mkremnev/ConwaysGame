@@ -2,7 +2,7 @@ import React from 'react';
 import { RadioGroup } from './RadioGroup';
 import { Story } from '@storybook/react/types-6-0';
 import { action } from '@storybook/addon-actions';
-import { InputProps } from './types';
+import { InputProps } from './RadioGroup';
 
 // eslint-disable-next-line no-restricted-syntax
 export default {

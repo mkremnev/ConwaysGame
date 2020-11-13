@@ -4,7 +4,12 @@ import React, { FC } from 'react';
 import { Link, useRouteMatch } from 'react-router-dom';
 import styled from '@emotion/styled';
 import { css } from '@emotion/core';
-import { LinkProps } from './types';
+
+export type LinkProps = {
+	label: string;
+	to: string;
+	activeOnlyWhenExact: boolean;
+};
 
 const List = styled.li`
 	list-style: none;

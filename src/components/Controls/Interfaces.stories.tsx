@@ -1,6 +1,6 @@
 import React from 'react';
 import { InterfaceLayout } from './Interfaces';
-import { ListButton } from './types';
+import { ListButton } from './Interfaces';
 import { Story } from '@storybook/react/types-6-0';
 import { action } from '@storybook/addon-actions';
 

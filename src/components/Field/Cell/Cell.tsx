@@ -1,6 +1,16 @@
 import React, { FC } from 'react';
 import { CellWrapper } from './Styled';
-import type { CellProps } from './types';
+
+export interface CellProps {
+	filled?: boolean;
+	x?: number;
+	y?: number;
+	onClick: (x: number, y: number) => void;
+}
+
+export interface StyledProps {
+	isFilled: boolean | undefined;
+}
 
 export const Cell: FC<CellProps> = React.memo(
 	({ filled, x, y, onClick }) => {
