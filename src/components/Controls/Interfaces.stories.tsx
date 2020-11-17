@@ -1,12 +1,12 @@
 import React from 'react';
 import { InterfaceLayout } from './Interfaces';
-import { ListButton } from './types';
+import { ListButton } from './Interfaces';
 import { Story } from '@storybook/react/types-6-0';
 import { action } from '@storybook/addon-actions';
 
 // eslint-disable-next-line no-restricted-syntax
 export default {
-	title: 'Lesson 9 / Interfaces / InterfaceLayout',
+	title: 'Component / InterfaceLayout',
 	component: InterfaceLayout,
 };
 

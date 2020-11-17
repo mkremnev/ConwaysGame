@@ -1,11 +1,25 @@
 import React from 'react';
-import {
-	FieldPropsComponent,
-	FieldPropsInterface,
-	FieldState,
-} from '@/modules/Main/types';
 import { InterfaceLayout } from '@/components/Controls/Interfaces';
 import styled from '@emotion/styled';
+
+export type FieldPropsComponent = React.FC<{
+	field: boolean[][];
+	onClick: (x: number, y: number) => void;
+}>;
+
+export interface FieldPropsInterface {
+	rows: number;
+	columns: number;
+	timerID?: NodeJS.Timeout;
+	fieldComponent: FieldPropsComponent;
+}
+
+export interface FieldState {
+	fieldState: boolean[][];
+	isRunningGame: boolean;
+	speedValue: number;
+	name: string;
+}
 
 const GameOfLifeProtoWrapper = styled.div`
 	display: flex;

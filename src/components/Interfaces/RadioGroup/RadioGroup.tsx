@@ -1,6 +1,14 @@
 import React, { FC, useState } from 'react';
-import { InputProps } from './types';
 import styled from '@emotion/styled';
+
+export interface OptionsType {
+	title: string;
+	value: string;
+}
+export interface InputProps {
+	options: Array<OptionsType>;
+	label: string;
+}
 
 const GroupComponent = styled.div`
 	position: relative;

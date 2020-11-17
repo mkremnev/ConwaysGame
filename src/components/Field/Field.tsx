@@ -1,7 +1,11 @@
 import React, { FC } from 'react';
 import { Cell } from './Cell/Cell';
-import type { FieldProps } from './types';
 import styled from '@emotion/styled';
+
+export interface FieldProps {
+	field: boolean[][];
+	onClick: (x: number, y: number) => void;
+}
 
 const NextLine = styled.p`
 	margin: 0;

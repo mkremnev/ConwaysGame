@@ -1,6 +1,6 @@
 import React from 'react';
 import { Field } from './Field';
-import type { FieldProps } from './types';
+import type { FieldProps } from './Field';
 import { Story } from '@storybook/react/types-6-0';
 
 const arrayDiedCell = () =>
@@ -26,7 +26,7 @@ const arrayRandomCell = (cellStatus = () => Math.random() < 0.3) => {
 
 // eslint-disable-next-line no-restricted-syntax
 export default {
-	title: 'Lesson 9 / Board /Field',
+	title: 'Component / Board /Field',
 	component: Field,
 	argTypes: {
 		field: {
@@ -38,8 +38,7 @@ export default {
 					'Рандомное поле': arrayRandomCell(),
 				},
 			},
-			description:
-				'Статус ячеек на игровом поля, обязательный параметр, живая ячейка - статус true, мертвая ячейка - статус false',
+			description: 'Заполненость поля в соответствии со статусами ячеек',
 			name: 'Заполненость поля',
 		},
 		onClick: {

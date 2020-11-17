@@ -4,7 +4,7 @@ import { Story } from '@storybook/react/types-6-0';
 
 // eslint-disable-next-line no-restricted-syntax
 export default {
-	title: 'Lesson 9 / Interfaces / Button',
+	title: 'Component / Button',
 	component: Button,
 	argTypes: {
 		text: {

@@ -18,7 +18,7 @@ describe('Testing Link', () => {
 		  className="css-xsfomn-List e1086ard0"
 		>
 		  <a
-		    className="css-am0pc4-customA-active-CustomLink"
+		    className="css-1g5179v-customA-active-CustomLink"
 		    href="/"
 		    onClick={[Function]}
 		  >
@@ -45,7 +45,7 @@ describe('Testing Link', () => {
 		  className="css-xsfomn-List e1086ard0"
 		>
 		  <a
-		    className="css-12s5ckf-customA-CustomLink"
+		    className="css-o997fh-customA-CustomLink"
 		    href="/route"
 		    onClick={[Function]}
 		  >
